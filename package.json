@@ -18,6 +18,7 @@
 	},
 	"homepage": "https://github.com/tehnikDaniyar/tasks-of-Codewars#readme",
 	"devDependencies": {
+		"gulp": "^4.0.2",
 		"gulp-uglify": "^3.0.2"
 	}
 }
