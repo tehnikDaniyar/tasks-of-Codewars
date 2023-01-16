@@ -22,13 +22,10 @@
 // longest_consec(["zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"], 2) --> "abigailtheta"
 
 function longestConsec(strarr, k) {
-	let concatArr = [];
-	strarr.forEach((str, index) => {
-		if (index !== 0) {
-			concatArr.push(str + strarr[index + 1]);
-		};
-	});
-	return concatArr.sort();
+	if (k >= strarr.length || k <= 0) {
+		return "";
+	};
+
 };
 
 console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], 2));
