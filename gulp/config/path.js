@@ -8,7 +8,7 @@ export const path = {
 	src: {
 		js: `${srcFolder}/**/*.js`,
 	},
-	whatch: {
+	watch: {
 		js: `${srcFolder}/**/*.js`,
 	}
 }

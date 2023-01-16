@@ -8,9 +8,14 @@ global.app = {
 	path: path,
 };
 
+//======watcher==========
+const watcher = () => {
+	gulp.watch(path.watch.js, js);
+};
+
 //======tasks=============
 import { js } from './gulp/tasks/js.js';
 
 //======scripts===========
-
-gulp.task('default', js);
+const dev = gulp.series(js, watcher)
+gulp.task('default', dev);
