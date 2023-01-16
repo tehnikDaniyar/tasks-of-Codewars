@@ -16,5 +16,8 @@
 	"bugs": {
 		"url": "https://github.com/tehnikDaniyar/tasks-of-Codewars/issues"
 	},
-	"homepage": "https://github.com/tehnikDaniyar/tasks-of-Codewars#readme"
+	"homepage": "https://github.com/tehnikDaniyar/tasks-of-Codewars#readme",
+	"devDependencies": {
+		"gulp-uglify": "^3.0.2"
+	}
 }
