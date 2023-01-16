@@ -6,7 +6,7 @@ export const path = {
 		js: `${buildFolder}/`,
 	},
 	src: {
-		js: `${srcFolder}/*.js`,
+		js: `${srcFolder}/**/*.js`,
 	},
 	whatch: {
 		js: `${srcFolder}/**/*.js`,
