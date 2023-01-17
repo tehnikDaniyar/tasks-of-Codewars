@@ -25,7 +25,20 @@ function longestConsec(strarr, k) {
 	if (k >= strarr.length || k <= 0) {
 		return "";
 	};
+	let concatArr = [];
+	const l = strarr.length;
 
+	for (let i = 0; i < l; i++) {
+		concatArr.push(strarr.slice(0, k).reduce((str, e) => str + e, ""));
+		strarr.shift();
+	}
+
+	let result = concatArr[0];
+	concatArr.forEach(elem => {
+		elem.length > result.length ? result = elem : null;
+	});
+
+	return result;
 };
 
 console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], 2));
