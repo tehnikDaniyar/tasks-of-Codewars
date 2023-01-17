@@ -22,26 +22,19 @@
 // longest_consec(["zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"], 2) --> "abigailtheta"
 
 function longestConsec(strarr, k) {
+	let result = [];
 	if (k >= strarr.length || k <= 0) {
 		return "";
-	};
-	let concatArr = [];
-	const l = strarr.length;
-
-	for (let i = 0; i < l; i++) {
-		concatArr.push(strarr.slice(0, k).reduce((str, e) => str + e, ""));
-		strarr.shift();
+	} else {
+		strarr.forEach((elem, index) => {
+			result.push(strarr.slice(index, index + k).reduce((s, e) => s + e, ""));
+		})
+		return result.sort((a, b) => a.length + b.length)[0];
 	}
 
-	let result = concatArr[0];
-	concatArr.forEach(elem => {
-		elem.length > result.length ? result = elem : null;
-	});
-
-	return result;
 };
 
-console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], 2));
+console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], 3));
 
 //=======Are You Playing Banjo?================
 // Create a function which answers the question "Are you playing banjo?".
