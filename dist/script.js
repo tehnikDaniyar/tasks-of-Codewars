@@ -34,7 +34,7 @@ function longestConsec(strarr, k) {
 	};
 };
 
-console.log(longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 2));
+longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 4)
 
 //=======Are You Playing Banjo?================
 // Create a function which answers the question "Are you playing banjo?".
