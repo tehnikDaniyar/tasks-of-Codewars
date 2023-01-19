@@ -46,25 +46,25 @@ You need to return a string that looks like a diamond shape when printed on the 
 Return null/nil/None/... if the input is an even number or negative, as it is not possible to print a diamond of even or negative size.*/
 
 function diamond(n) {
-	let arr = [];
+	let arr = [...Array(n)];
+	let arr2 = [];
 	let a = '*';
-	let counter = -1;
-	let flag = true;
+	let counter = 1;
 	for (let i = 0; i < n; i++) {
-		if (flag) {
+		arr.splice(Math.ceil(n / 2) - 1 - i, i + 1, a);
+		arr2.push(arr.join(undefined))
+		if (counter < n) {
 			a += '**';
 			counter += 2;
-			counter === n ? flag = false : null;
 		} else {
-			a -= '**';
-			counter -= 2;
+			a = a.replace(/\*{2}/, '');
 		};
-		arr.push(a);
 	};
-	return arr;
+	let res = arr2.join(' ').replace(/\s/g, '\n');
+	return res;
 };
 
-diamond(5);
+console.log(diamond(7));
 
 
 //=======Are You Playing Banjo?================
