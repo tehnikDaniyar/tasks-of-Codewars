@@ -128,15 +128,17 @@ e.g. trim("Code Wars is pretty rad", 50) should return "Code Wars is pretty rad"
 
 function trim(str, size) {
 	let res = str.substr(0, size);
+
 	if (str.length > size && str.length > 3) {
-		res = res.replace(/\w{3}$/, '...');
-	} else if (str.length > size && str.length <= 3) {
-		res = res[0] + '...';
+		res = res.replace(/[\w\s]{3}$/, '...');
+	} else if (str.length <= 3) {
+		res = str += '...';
 	}
 	return res;
 }
 
-let a = trim('ab', 1);
+let a = trim("Creating kata is fun", 14);
+let b = trim("nT ExL AOmG gZTKs", 2)
 
 
 
