@@ -158,6 +158,10 @@ const areYouPlayingBanjo = (name) => {
 // }
 
 
+/*Complete the method that takes a boolean value and return a "Yes" string for true, or a "No" string for false.*/
+function boolToWord(bool) {
+	bool ? 'Yes' : 'No'
+}
 /*Who remembers back to their time in the schoolyard, when girls would take a flower and tear its petals, saying each of the following phrases each time a petal was torn:
 
 "I love you"
