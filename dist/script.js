@@ -127,18 +127,27 @@ If the string is smaller or equal than the maximum string length, then simply re
 e.g. trim("Code Wars is pretty rad", 50) should return "Code Wars is pretty rad"*/
 
 function trim(str, size) {
-	let res = str.substr(0, size);
+	if (str.length > size) {
+		str = str.substr(0, size);
 
-	if (str.length > size && str.length > 3) {
-		res = res.replace(/[\w\s]{3}$/, '...');
-	} else if (str.length <= 3) {
-		res = str += '...';
+		if (str.length <= 3) {
+			return str + '...';
+		} else {
+			return str.replace(/[\w\s]{3}$/, '...',);
+		};
+
+	} else {
+		return str;
 	}
-	return res;
 }
 
-let a = trim("Creating kata is fun", 14);
-let b = trim("nT ExL AOmG gZTKs", 2)
+let a = trim("OU aMhEv", 3);
+// let b = trim("nT ExL AOmG gZTKs", 2)
+
+//==best practic====
+// function trim(arr, size) {
+// 	return arr.length <= size ? arr : arr.slice(0, arr.length > 3 ? size - 3 : size) + '...'
+// }
 
 
 
