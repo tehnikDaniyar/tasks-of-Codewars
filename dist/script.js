@@ -110,6 +110,16 @@ function expandedForm(num) {
 let res = expandedForm(20324);
 
 
+//==========Beginner Series #3 Sum of Numbers============
+/*Given two integers a and b, which can be positive or negative, find the sum of all the integers between and including them and return it. If the two numbers are equal return a or b.
+
+Note: a and b are not ordered!*/
+
+function getSum(a, b) {
+
+}
+
+
 
 //====================Trimming a string=========================================
 /*Return a function that will trim a string (the first argument given) if it is longer than the maximum string length (the second argument given). The result should also end with "..."
