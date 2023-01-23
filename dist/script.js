@@ -116,8 +116,22 @@ let res = expandedForm(20324);
 Note: a and b are not ordered!*/
 
 function getSum(a, b) {
-
+	let arr = [a, b].sort((a, b) => a - b);
+	let counter = arr[0];
+	let summ = 0;
+	while (!(counter > arr[1])) {
+		summ += counter;
+		counter++;
+	};
+	return summ;
 }
+
+getSum(10, 5);
+
+//=======best practic==========================
+// function GetSum(a, b) {
+// 	return (a + b) * (Math.abs(a - b) + 1) / 2;
+//  }
 
 
 
