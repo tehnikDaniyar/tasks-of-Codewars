@@ -135,6 +135,21 @@ getSum(10, 5);
 
 
 
+//================testing 1- 2- 3===========================
+function number(arr) {
+	let res = [];
+	for (let i = 0; i < arr.length; i++) {
+		res.push(`${i + 1}: ${arr[i]}`);
+	};
+	return res;
+};
+
+let www = number(['a', 'b', 'c']);
+
+// let number = (a) => a.map((v, i) => `${i + 1}: ${v}`)
+
+
+
 //====================Trimming a string=========================================
 /*Return a function that will trim a string (the first argument given) if it is longer than the maximum string length (the second argument given). The result should also end with "..."
 
