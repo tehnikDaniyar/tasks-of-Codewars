@@ -67,6 +67,36 @@ function diamond(n) {
 console.log(diamond(7));
 
 
+//============Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!================
+// function sumDigPow(a, b) {
+// 	let arr = [];
+// 	while (a !== b) {
+// 		arr.push(a);
+// 		a++;
+// 	};
+// 	return arr.filter(num => check(num));
+// };
+
+// function check(num) {
+// 	return String(num).split('')
+// 		.map((num, index) => Math.pow(Number(num), index + 1))
+// 		.reduce((sum, num) => sum + num) === num;
+// };
+
+
+function sumDigPow(a, b) {
+	let arr = [];
+	while (a <= b) {
+		String(num).split('')
+			.map((num, index) => Math.pow(Number(num), index + 1))
+			.reduce((sum, num) => sum + num) === num ? arr.push(a) : null;
+		a++;
+	};
+	return arr;
+};
+
+
+
 
 /*You live in the city of Cartesia where all roads are laid out in a perfect grid. You arrived ten minutes too early to an appointment, so you decided to take the opportunity to go for a short walk. The city provides its citizens with a Walk Generating App on their phones -- everytime you press the button it sends you an array of one-letter strings representing directions to walk (eg. ['n', 's', 'w', 'e']). You always walk only a single block for each letter (direction) and you know it takes you one minute to traverse one city block, so create a function that will return true if the walk the app gives you will take you exactly ten minutes (you don't want to be early or late!) and will, of course, return you to your starting point. Return false otherwise.
 
@@ -180,6 +210,20 @@ console.log(cats);
 
 // const solution = (start, finish, difference = finish - start) =>
 //   Math.floor(difference / 3) + difference % 3
+
+
+//===========isogramm================
+/*An isogram is a word that has no repeating letters, consecutive or non-consecutive. Implement a function that determines whether a string that contains only letters is an isogram. Assume the empty string is an isogram. Ignore letter case.*/
+
+function isIsogram(str) {
+	str = str.toLowerCase();
+	const set = new Set([...str]);
+	return [...set].join('') === str;
+};
+
+// function isIsogram(str) {
+// 	return !/(\w).*\1/i.test(str)
+// }
 
 
 //==========Beginner Series #3 Sum of Numbers============
