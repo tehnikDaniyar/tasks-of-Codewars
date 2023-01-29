@@ -6,14 +6,16 @@
 
 var uniqueInOrder = function (iterable) {
 	//your code here - remember iterable can be a string or an array
-	let arr = iterable.split('');
-	let result = [arr[0],];
+	// let arr = iterable.split('');
+	// let result = [arr[0],];
 
-	for (let i = 1; i < arr.length; i++) {
-		if (arr[i - 1] != arr[i]) {
-			result.push(arr[i])
-		};
-	};
+	// for (let i = 1; i < arr.length; i++) {
+	// 	if (arr[i - 1] != arr[i]) {
+	// 		result.push(arr[i])
+	// 	};
+	// };
 
-	return result
+	// return result
+
+	return [...iterable].filter((elem, index) => index === 0 || elem !== iterable[index - 1])
 };
