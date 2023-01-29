@@ -156,6 +156,25 @@ function isValidWalk(walk) {
 
 
 
+//==========Unique In Order======================
+/*Implement the function unique_in_order which takes as argument a sequence and returns a list of items without any elements with the same value next to each other and preserving the original order of elements.*/
+
+var uniqueInOrder = function (iterable) {
+	//your code here - remember iterable can be a string or an array
+	let arr = iterable.split('');
+	let result = [arr[0],];
+
+	for (let i = 1; i < arr.length; i++) {
+		if (arr[i - 1] != arr[i]) {
+			result.push(arr[i])
+		};
+	};
+
+	return result
+};
+
+
+
 /*Write Number in Expanded Form
 You will be given a number and you will need to return it as a string in Expanded Form. For example:
 
@@ -230,6 +249,29 @@ console.log(cats);
 
 // const solution = (start, finish, difference = finish - start) =>
 //   Math.floor(difference / 3) + difference % 3
+
+
+
+/*The first input array is the key to the correct answers to an exam, like ["a", "a", "b", "d"]. The second one contains a student's submitted answers.
+
+The two arrays are not empty and are the same length. Return the score for this array of answers, giving +4 for each correct answer, -1 for each incorrect answer, and +0 for each blank answer, represented as an empty string (in C the space character is used).
+
+If the score < 0, return 0.*/
+
+function checkExam(array1, array2) {
+	let counter = 0;
+	for (let i = 0; i < array1.length; i++) {
+		if (array2[i] !== '') {
+			if (array2[i] === array1[i]) {
+				counter += 4;
+			} else {
+				counter -= 1;
+			};
+		};
+	};
+	return counter < 0 ? 0 : counter;
+}
+
 
 
 //===========isogramm================
