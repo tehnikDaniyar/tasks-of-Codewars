@@ -246,6 +246,19 @@ function isIsogram(str) {
 // }
 
 
+
+//==============Small enough? - Beginner=======================
+/*You will be given an array and a limit value. You must check that all values in the array are below or equal to the limit value. If they are, return true. Else, return false.
+
+You can assume all values in the array are numbers.*/
+
+function smallEnough(a, limit) {
+	return a.filter(num => num > limit).length === 0;
+}
+
+// smallEnough = (a, l) => a.every(e => e <= l)
+
+
 //==========Beginner Series #3 Sum of Numbers============
 /*Given two integers a and b, which can be positive or negative, find the sum of all the integers between and including them and return it. If the two numbers are equal return a or b.
 
