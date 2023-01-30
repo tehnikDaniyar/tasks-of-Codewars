@@ -87,6 +87,28 @@ function diamond(n) {
 console.log(diamond(7));
 
 
+
+
+//========================Mexican Wave====================
+function wave(str) {
+	let str2 = str.split('');
+	let result = [];
+	str2.forEach((letter, index) => {
+		if (letter !== ' ') {
+			let array = str.split('');
+			let upperLetter = letter.toUpperCase();
+			array.splice(index, 1, upperLetter);
+			result.push(array.join(''));
+		};
+	});
+	return result;
+};
+
+// var wave=w=>[...w].map((a,i)=>w.slice(0,i)+a.toUpperCase()+w.slice(i+1)).filter(a=>a!=w)
+
+
+
+
 //============Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!================
 // function sumDigPow(a, b) {
 // 	let arr = [];
@@ -161,16 +183,18 @@ function isValidWalk(walk) {
 
 var uniqueInOrder = function (iterable) {
 	//your code here - remember iterable can be a string or an array
-	let arr = iterable.split('');
-	let result = [arr[0],];
+	// let arr = iterable.split('');
+	// let result = [arr[0],];
 
-	for (let i = 1; i < arr.length; i++) {
-		if (arr[i - 1] != arr[i]) {
-			result.push(arr[i])
-		};
-	};
+	// for (let i = 1; i < arr.length; i++) {
+	// 	if (arr[i - 1] != arr[i]) {
+	// 		result.push(arr[i])
+	// 	};
+	// };
 
-	return result
+	// return result
+
+	return [...iterable].filter((elem, index) => index === 0 || elem !== iterable[index - 1])
 };
 
 
