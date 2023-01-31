@@ -298,6 +298,20 @@ function checkExam(array1, array2) {
 
 
 
+
+//===========Count the divisors of a number====================
+function getDivisorsCnt(n) {
+	let counter = 0;
+	for (let i = 1; i <= n; i++) {
+		if (n % i === 0) {
+			counter++;
+		};
+	};
+	return counter;
+}
+
+
+
 //===========isogramm================
 /*An isogram is a word that has no repeating letters, consecutive or non-consecutive. Implement a function that determines whether a string that contains only letters is an isogram. Assume the empty string is an isogram. Ignore letter case.*/
 
