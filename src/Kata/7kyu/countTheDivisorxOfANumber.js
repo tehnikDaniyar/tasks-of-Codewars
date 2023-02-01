@@ -11,3 +11,7 @@ function getDivisorsCnt(n) {
 	};
 	return counter;
 }
+
+// const getDivisorsCnt = n =>
+//   [...Array(n / 2 ^ 0)].reduce((pre, _, idx) => n % ++idx ? pre : ++pre, 1);
+
