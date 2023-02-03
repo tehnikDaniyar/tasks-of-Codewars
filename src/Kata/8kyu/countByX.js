@@ -6,11 +6,16 @@
 Assume both the given number and the number of times to count will be positive numbers greater than 0.*/
 
 function countBy(x, n) {
+	// let arr = [];
+	// let y = x;
+	// for (let i = 0; i < n; i++) {
+	// 	arr[i] = y;
+	// 	y += x;
+	// };
+	// return arr;
 	let arr = [];
-	let y = x;
-	for (let i = 0; i < n; i++) {
-		arr[i] = y;
-		y += x;
-	};
-	return arr;
+	arr.length = n;
+	return arr.map((elem, index) => x * (index + 1));
 }
+
+console.log(countBy(2, 10));
