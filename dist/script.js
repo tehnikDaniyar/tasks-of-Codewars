@@ -543,19 +543,21 @@ function boolToWord(bool) {
 Assume both the given number and the number of times to count will be positive numbers greater than 0.*/
 
 function countBy(x, n) {
-	// let arr = [];
-	// let y = x;
-	// for (let i = 0; i < n; i++) {
-	// 	arr[i] = y;
-	// 	y += x;
-	// };
-	// return arr;
 	let arr = [];
-	arr.length = n;
-	return arr.map((elem, index) => x * (index + 1));
+	let y = x;
+	for (let i = 0; i < n; i++) {
+		arr[i] = y;
+		y += x;
+	};
+	return arr;
 }
 
 console.log(countBy(2, 10));
+
+// const countBy = (x, n) =>
+//   [...Array(n)].map((_, idx) => ++idx * x);
+
+// const countBy = (x, n) => Array.from({length: n}, (v, k) => (k + 1) * x)
 /*Who remembers back to their time in the schoolyard, when girls would take a flower and tear its petals, saying each of the following phrases each time a petal was torn:
 
 "I love you"
