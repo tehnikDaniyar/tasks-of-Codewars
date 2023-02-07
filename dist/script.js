@@ -398,6 +398,21 @@ function getDivisorsCnt(n) {
 
 
 
+//============GrowthOfAPopulation==================
+
+/*In a small town the population is p0 = 1000 at the beginning of a year. The population regularly increases by 2 percent per year and moreover 50 new inhabitants per year come to live in the town. How many years does the town need to see its population greater or equal to p = 1200 inhabitants?*/
+
+function nbYear(p0, percent, aug, p) {
+	let counter = 0;
+	while (p0 < p) {
+		p0 = Math.floor(p0 + (p0 * (percent / 100)) + aug);
+		++counter;
+	}
+	return counter;
+}
+
+
+
 //==============Highest and Lowest===============
 /*In this little assignment you are given a string of space separated numbers, and have to return the highest and lowest number.*/
 function highAndLow(numbers) {
@@ -497,6 +512,28 @@ function number(arr) {
 let www = number(['a', 'b', 'c']);
 
 // let number = (a) => a.map((v, i) => `${i + 1}: ${v}`)
+
+
+
+
+//============The Coupon Code=======================
+/*Your mission:
+Write a function called checkCoupon which verifies that a coupon code is valid and not expired.
+
+A coupon is no more valid on the day AFTER the expiration date. All dates will be passed as strings in this format: "MONTH DATE, YEAR".*/
+
+function checkCoupon(enteredCode, correctCode, currentDate, expirationDate) {
+	return (enteredCode === correctCode) &&
+		convertDate(expirationDate) >= convertDate(currentDate);
+}
+
+function convertDate(date) {
+	return new Date(date.split(' ').reverse().join(' '))
+};
+
+
+
+
 
 
 
@@ -713,6 +750,32 @@ function litres(time) {
 function nameShuffler(str) {
 	return str.split(' ').reverse().join(' ');
 }
+
+
+
+//===============No zeros for heros===================
+/*Numbers ending with zeros are boring.
+
+They might be fun in your world, but not here.
+
+Get rid of them. Only the ending ones.*/
+
+function noBoringZeros(n) {
+	return String(n).replace(/0+$/, '');
+};
+let counter = 0;
+function id() {
+	return counter++;
+};
+
+console.log(id());
+console.log(id());
+console.log(id());
+console.log(id());
+console.log(id());
+console.log(id());
+
+
 
 
 //===============Super Duper Easy==================
