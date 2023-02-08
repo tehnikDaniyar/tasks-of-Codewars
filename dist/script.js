@@ -110,6 +110,26 @@ function wave(str) {
 
 
 
+//============Simple Fun #242: Caesar Box Cipher Encoding=========
+/*Caesar Box is a simple transposition cipher used in the Roman Empire. It is described as the following two-step process:
+
+The characters of the given message are broken into n lines of equal lengths and stacked up.
+The letters from the resulting rectangle are written from top to bottom column by column.
+Given a string message, count the number of different n such that the message, obtained by applying encoding two times, is the same as initial message.*/
+
+function caesarBoxCipherEncoding(message) {
+	let counter = 0;
+	for (let i = 2; i <= Math.floor(message.length / 2); i++) {
+		if (message.length % i === 0) {
+			counter++;
+		};
+	};
+	return counter;
+};
+
+
+
+
 //===============Sudoku board validator===================
 function validateSudoku(board) {
 	//====cheking rows==========
@@ -397,6 +417,17 @@ function getDivisorsCnt(n) {
 
 
 
+//==========find the middle element============
+/*As a part of this Kata, you need to create a function that when provided with a triplet, returns the index of the numerical element that lies between the other two elements.
+
+The input to the function will be an array of three distinct numbers (Haskell: a tuple).*/
+
+function gimme(triplet) {
+	return triplet.indexOf([...triplet].sort((a, b) => a - b)[1]);
+};
+
+
+
 
 //============GrowthOfAPopulation==================
 
@@ -454,6 +485,17 @@ function smallEnough(a, limit) {
 }
 
 // smallEnough = (a, l) => a.every(e => e <= l)
+
+
+
+//=======Summ of minimum============
+/*Given a 2D ( nested ) list ( array, vector, .. ) of size m * n, your task is to find the sum of the minimum values in each row.*/
+
+
+
+function sumOfMinimums(arr) {
+	return arr.reduce((summ, array) => summ + Math.min(...array), 0);
+}
 
 
 //==========Beginner Series #3 Sum of Numbers============
