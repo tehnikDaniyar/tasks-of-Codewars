@@ -87,6 +87,19 @@ function diamond(n) {
 console.log(diamond(7));
 
 
+//==========Hamming Distance==============
+/*The Hamming Distance is a measure of similarity between two strings of equal length. Complete the function so that it returns the number of positions where the input strings do not match.*/
+
+function hamming(a, b) {
+	let res = [];
+	for (let i = 0; i < a.length; i++) {
+		a[i] === b[i] ? null : res.push(a[i]);
+	};
+};
+// const hamming = (a, b) => [...a].reduce((pre, val, idx) => pre + (val !== b[idx]), 0);
+
+
+
 
 
 //========================Mexican Wave====================
@@ -863,14 +876,13 @@ function multiTable(number) {
 	let res = '';
 
 	for (let i = 10; i >= 1; i--) {
-		let str = String(`${number} * ${i} = ${number * i}`);
-		res = `${str}\\${res.replace(``, `n${i + 1}`)}`;
+		let str = String(`${i} * ${number}  = ${number * i}`);
+		res = `${str}${res.replace(`${i + 1}`, `\\n${i + 1}`)}`;
 	};
 
 	return res;
 }
 
-console.log(multiTable(2));
 
 
 //========= Name Shuffler ==============
