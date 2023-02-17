@@ -37,3 +37,10 @@ Array of indices (0-based) of columns to be deleted.
 function constructSubmatrix(matrix, rowsToDelete, columnsToDelete) {
 
 }
+
+let arrForConstructSubmairix = [
+	[1, 0, 0, 2],
+	[0, 5, 0, 1],
+	[0, 0, 3, 5]
+];
+
