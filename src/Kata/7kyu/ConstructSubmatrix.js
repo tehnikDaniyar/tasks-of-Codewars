@@ -35,12 +35,16 @@ Array of indices (0-based) of columns to be deleted.
 [output] 2D integer array*/
 
 function constructSubmatrix(matrix, rowsToDelete, columnsToDelete) {
-
+	let res = [];
+	matrix.forEach((elem, index) => {
+		if (rowsToDelete.indexOf(index) === -1) {
+			columnsToDelete.forEach(position => elem.splice(position, 1, ""));
+			elem = elem.filter(num => num !== '');
+			res.push(elem)
+		};
+	});
+	return res;
 }
 
-let arrForConstructSubmairix = [
-	[1, 0, 0, 2],
-	[0, 5, 0, 1],
-	[0, 0, 3, 5]
-];
+
 
