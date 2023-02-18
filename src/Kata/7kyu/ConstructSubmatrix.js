@@ -44,7 +44,11 @@ function constructSubmatrix(matrix, rowsToDelete, columnsToDelete) {
 		};
 	});
 	return res;
-}
+};
+
+// function constructSubmatrix(matrix, rows, cols) {
+//   return matrix.filter((row,i) => rows.indexOf(i) === -1).map(row => row.filter((col,i) => cols.indexOf(i) === -1));
+// }
 
 
 
