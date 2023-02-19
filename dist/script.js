@@ -20,41 +20,57 @@ You can immediately see that going "NORTH" and immediately "SOUTH" is not reason
 
 //["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]
 function dirReduc(arr) {
-	let obj = {};
-	let res = [];
+	// let obj = {};
+	// let res = [];
 
-	arr.forEach(elem => obj[elem] ? obj[elem] += 1 : obj[elem] = 1);
+	// arr.forEach(elem => obj[elem] ? obj[elem] += 1 : obj[elem] = 1);
 
-	while (obj.NORTH > 0 && obj.SOUTH > 0) {
-		for (let key in obj) {
-			if (key === "NORTH") {
-				obj[key] -= 1;
-			};
-			if (key === "SOUTH") {
-				obj[key] -= 1;
-			};
-		};
-	};
+	// while (obj.NORTH > 0 && obj.SOUTH > 0) {
+	// 	for (let key in obj) {
+	// 		if (key === "NORTH") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 		if (key === "SOUTH") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 	};
+	// };
 
-	while (obj.EAST > 0 && obj.WEST > 0) {
-		for (let key in obj) {
-			if (key === "EAST") {
-				obj[key] -= 1;
-			};
-			if (key === "WEST") {
-				obj[key] -= 1;
-			};
-		};
-	};
+	// while (obj.EAST > 0 && obj.WEST > 0) {
+	// 	for (let key in obj) {
+	// 		if (key === "EAST") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 		if (key === "WEST") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 	};
+	// };
 
 
-	for (let key in obj) {
-		obj[key] ? res.push(key) : null;
-	}
+	// for (let key in obj) {
+	// 	obj[key] ? res.push(key) : null;
+	// }
+	// return arr.reduce((res, vector) => {
+	// 	console.log("NORTH SOUTH".replace(/.+\s(\w+$)$/, '$1'));
+	// 	if (vector === 'NORTH' && res.replace(/.+\s(\w+$)$/, '$1') !== "SOUTH") { res = res + ' ' + vector };
+	// 	if (vector === 'SOUTH' && res.replace(/.+\s(\w+$)$/, '$1') !== "NORTH") { res + vector };
+	// 	if (vector === 'EAST' && res.replace(/.+\s(\w+$)$/, '$1') !== "WEST") { res + vector };
+	// 	if (vector === 'WEST' && res.replace(/.+\s(\w+$)$/, '$1') !== "EAST") { res + vector };
+	// 	return res;
+	// }, '')
 
 };
 
 dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])
+console.log(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]));
+
+
+
+//=============Extract the domain name from a URL=================
+function domainName(url) {
+	return url.replace(/(\w+[\.\/\/:]+)*([a-zA-Z\d\s-]+)\..+/g, '$2')
+};
 
 
 //============Are they the "same"?==================
@@ -177,6 +193,22 @@ function wave(str) {
 // var wave=w=>[...w].map((a,i)=>w.slice(0,i)+a.toUpperCase()+w.slice(i+1)).filter(a=>a!=w)
 
 
+
+
+
+//=============Persistent Bugger=====================
+/*Write a function, persistence, that takes in a positive parameter num and returns its multiplicative persistence, which is the number of times you must multiply the digits in num until you reach a single digit.*/
+
+function persistence(num) {
+	let counter = 0;
+	while (String(num).length > 1) {
+		num = Number(String(num).split('').reduce((res, dig) => res * dig));
+		counter++;
+	};
+	return counter;
+};
+
+persistence(123);
 
 
 
@@ -504,27 +536,21 @@ Array of indices (0-based) of columns to be deleted.
 [output] 2D integer array*/
 
 function constructSubmatrix(matrix, rowsToDelete, columnsToDelete) {
-	console.log('constructSubmatrix');
 	let res = [];
 	matrix.forEach((elem, index) => {
-		if (rowsToDelete.indexOf(index) !== -1) {
-			columnsToDelete.forEach(position => elem.splice(position, 1))
+		if (rowsToDelete.indexOf(index) === -1) {
+			columnsToDelete.forEach(position => elem.splice(position, 1, ""));
+			elem = elem.filter(num => num !== '');
 			res.push(elem)
 		};
 	});
 	return res;
-}
+};
 
-constructSubmatrix(
-	[
-		[1, 0, 0, 2],
-		[0, 5, 0, 1],
-		[0, 0, 3, 5],
-		[2, 3, 4, 5]
-	],
-	[0, 1],
-	[1, 2]
-)
+// function constructSubmatrix(matrix, rows, cols) {
+//   return matrix.filter((row,i) => rows.indexOf(i) === -1).map(row => row.filter((col,i) => cols.indexOf(i) === -1));
+// }
+
 
 
 

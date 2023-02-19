@@ -20,38 +20,47 @@ You can immediately see that going "NORTH" and immediately "SOUTH" is not reason
 
 //["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]
 function dirReduc(arr) {
-	let obj = {};
-	let res = [];
+	// let obj = {};
+	// let res = [];
 
-	arr.forEach(elem => obj[elem] ? obj[elem] += 1 : obj[elem] = 1);
+	// arr.forEach(elem => obj[elem] ? obj[elem] += 1 : obj[elem] = 1);
 
-	while (obj.NORTH > 0 && obj.SOUTH > 0) {
-		for (let key in obj) {
-			if (key === "NORTH") {
-				obj[key] -= 1;
-			};
-			if (key === "SOUTH") {
-				obj[key] -= 1;
-			};
-		};
-	};
+	// while (obj.NORTH > 0 && obj.SOUTH > 0) {
+	// 	for (let key in obj) {
+	// 		if (key === "NORTH") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 		if (key === "SOUTH") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 	};
+	// };
 
-	while (obj.EAST > 0 && obj.WEST > 0) {
-		for (let key in obj) {
-			if (key === "EAST") {
-				obj[key] -= 1;
-			};
-			if (key === "WEST") {
-				obj[key] -= 1;
-			};
-		};
-	};
+	// while (obj.EAST > 0 && obj.WEST > 0) {
+	// 	for (let key in obj) {
+	// 		if (key === "EAST") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 		if (key === "WEST") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 	};
+	// };
 
 
-	for (let key in obj) {
-		obj[key] ? res.push(key) : null;
-	}
+	// for (let key in obj) {
+	// 	obj[key] ? res.push(key) : null;
+	// }
+	// return arr.reduce((res, vector) => {
+	// 	console.log("NORTH SOUTH".replace(/.+\s(\w+$)$/, '$1'));
+	// 	if (vector === 'NORTH' && res.replace(/.+\s(\w+$)$/, '$1') !== "SOUTH") { res = res + ' ' + vector };
+	// 	if (vector === 'SOUTH' && res.replace(/.+\s(\w+$)$/, '$1') !== "NORTH") { res + vector };
+	// 	if (vector === 'EAST' && res.replace(/.+\s(\w+$)$/, '$1') !== "WEST") { res + vector };
+	// 	if (vector === 'WEST' && res.replace(/.+\s(\w+$)$/, '$1') !== "EAST") { res + vector };
+	// 	return res;
+	// }, '')
 
 };
 
 dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])
+console.log(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]));
