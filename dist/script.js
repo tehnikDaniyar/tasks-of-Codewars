@@ -388,6 +388,9 @@ function isValidWalk(walk) {
 Write a function that will convert a string into title case, given an optional list of exceptions (minor words). The list of minor words will be given as a string with each word separated by a space. Your function should ignore the case of the minor words string -- it should behave in the same way even if the case of the minor word string is changed.*/
 
 function titleCase(title, minorWords) {
+
+
+
 	console.log('title case');
 	// return title.split(' ').map((word) => {
 	// 	new RegExp(word).test(minorWords) ? word.toLowerCase() : word[0].toUpperCase() + word.slice(1, -1).toLowerCase();
@@ -395,7 +398,7 @@ function titleCase(title, minorWords) {
 
 	let arr = title.split(' ');
 	let newArr = arr.map((word, index) => {
-		let has = new RegExp(word).test(minorWords);
+		let has = minorWords ? new RegExp("\s" + word + "\s", 'ig').test(minorWords) : false;
 		let res;
 		if (has && index !== 0) {
 			res = word.toLowerCase();
@@ -404,10 +407,10 @@ function titleCase(title, minorWords) {
 		};
 		return res;
 	});
-	return newArr;
+	return newArr.join(' ');
 }
 
-titleCase('a clash of KINGS', 'a an the of');
+titleCase("First a of in", "an often into");
 
 
 
