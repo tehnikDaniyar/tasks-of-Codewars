@@ -764,6 +764,13 @@ console.log(pairZeros([1, 0, 2, 0, 3, 0]));
 
 
 
+//===========remove conestive duplicate words =============
+/*Your task is to remove all consecutive duplicate words from a string, leaving only first words entries*/
+
+const removeConsecutiveDuplicates = s => s.split(' ').filter((w, i, a) => w !== a[i + 1]).join(' ');
+
+
+
 //================Simple string characters=====================
 /*In this Kata, you will be given a string and your task will be to return a list of ints detailing the count of uppercase letters, lowercase, numbers and special characters, as follows.*/
 
