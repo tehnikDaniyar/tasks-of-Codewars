@@ -1,78 +1,5 @@
 
 
-
-
-//============Direction REduction=================
-/*Once upon a time, on a way through the old wild mountainous west,…
-… a man was given directions to go from one point to another. The directions were "NORTH", "SOUTH", "WEST", "EAST". Clearly "NORTH" and "SOUTH" are opposite, "WEST" and "EAST" too.
-
-Going to one direction and coming back the opposite direction right away is a needless effort. Since this is the wild west, with dreadful weather and not much water, it's important to save yourself some energy, otherwise you might die of thirst!
-
-How I crossed a mountainous desert the smart way.
-The directions given to the man are, for example, the following (depending on the language):
-
-["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"].
-or
-{ "NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST" };
-or
-[North, South, South, East, West, North, West]
-You can immediately see that going "NORTH" and immediately "SOUTH" is not reasonable, better stay to the same place! So the task is to give to the man a simplified version of the plan. A better plan in this case is simply:*/
-
-//["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]
-function dirReduc(arr) {
-	// let obj = {};
-	// let res = [];
-
-	// arr.forEach(elem => obj[elem] ? obj[elem] += 1 : obj[elem] = 1);
-
-	// while (obj.NORTH > 0 && obj.SOUTH > 0) {
-	// 	for (let key in obj) {
-	// 		if (key === "NORTH") {
-	// 			obj[key] -= 1;
-	// 		};
-	// 		if (key === "SOUTH") {
-	// 			obj[key] -= 1;
-	// 		};
-	// 	};
-	// };
-
-	// while (obj.EAST > 0 && obj.WEST > 0) {
-	// 	for (let key in obj) {
-	// 		if (key === "EAST") {
-	// 			obj[key] -= 1;
-	// 		};
-	// 		if (key === "WEST") {
-	// 			obj[key] -= 1;
-	// 		};
-	// 	};
-	// };
-
-
-	// for (let key in obj) {
-	// 	obj[key] ? res.push(key) : null;
-	// }
-	// return arr.reduce((res, vector) => {
-	// 	console.log("NORTH SOUTH".replace(/.+\s(\w+$)$/, '$1'));
-	// 	if (vector === 'NORTH' && res.replace(/.+\s(\w+$)$/, '$1') !== "SOUTH") { res = res + ' ' + vector };
-	// 	if (vector === 'SOUTH' && res.replace(/.+\s(\w+$)$/, '$1') !== "NORTH") { res + vector };
-	// 	if (vector === 'EAST' && res.replace(/.+\s(\w+$)$/, '$1') !== "WEST") { res + vector };
-	// 	if (vector === 'WEST' && res.replace(/.+\s(\w+$)$/, '$1') !== "EAST") { res + vector };
-	// 	return res;
-	// }, '')
-
-};
-
-dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])
-console.log(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]));
-
-
-
-//=============Extract the domain name from a URL=================
-function domainName(url) {
-	return url.replace(/.*\/\/([a-zA-Z])\..+/g, '$1')
-};
-
-
 //============Are they the "same"?==================
 /*Given two arrays a and b write a function comp(a, b) (orcompSame(a, b)) that checks whether the two arrays have the "same" elements, with the same multiplicities (the multiplicity of a member is the number of times it appears). "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.*/
 
@@ -478,6 +405,79 @@ function expandedForm(num) {
 let res = expandedForm(20324);
 
 
+
+
+//============Direction REduction=================
+/*Once upon a time, on a way through the old wild mountainous west,…
+… a man was given directions to go from one point to another. The directions were "NORTH", "SOUTH", "WEST", "EAST". Clearly "NORTH" and "SOUTH" are opposite, "WEST" and "EAST" too.
+
+Going to one direction and coming back the opposite direction right away is a needless effort. Since this is the wild west, with dreadful weather and not much water, it's important to save yourself some energy, otherwise you might die of thirst!
+
+How I crossed a mountainous desert the smart way.
+The directions given to the man are, for example, the following (depending on the language):
+
+["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"].
+or
+{ "NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST" };
+or
+[North, South, South, East, West, North, West]
+You can immediately see that going "NORTH" and immediately "SOUTH" is not reasonable, better stay to the same place! So the task is to give to the man a simplified version of the plan. A better plan in this case is simply:*/
+
+//["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]
+function dirReduc(arr) {
+	// let obj = {};
+	// let res = [];
+
+	// arr.forEach(elem => obj[elem] ? obj[elem] += 1 : obj[elem] = 1);
+
+	// while (obj.NORTH > 0 && obj.SOUTH > 0) {
+	// 	for (let key in obj) {
+	// 		if (key === "NORTH") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 		if (key === "SOUTH") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 	};
+	// };
+
+	// while (obj.EAST > 0 && obj.WEST > 0) {
+	// 	for (let key in obj) {
+	// 		if (key === "EAST") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 		if (key === "WEST") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 	};
+	// };
+
+
+	// for (let key in obj) {
+	// 	obj[key] ? res.push(key) : null;
+	// }
+	// return arr.reduce((res, vector) => {
+	// 	console.log("NORTH SOUTH".replace(/.+\s(\w+$)$/, '$1'));
+	// 	if (vector === 'NORTH' && res.replace(/.+\s(\w+$)$/, '$1') !== "SOUTH") { res = res + ' ' + vector };
+	// 	if (vector === 'SOUTH' && res.replace(/.+\s(\w+$)$/, '$1') !== "NORTH") { res + vector };
+	// 	if (vector === 'EAST' && res.replace(/.+\s(\w+$)$/, '$1') !== "WEST") { res + vector };
+	// 	if (vector === 'WEST' && res.replace(/.+\s(\w+$)$/, '$1') !== "EAST") { res + vector };
+	// 	return res;
+	// }, '')
+
+};
+
+dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])
+console.log(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]));
+
+
+
+//=============Extract the domain name from a URL=================
+function domainName(url) {
+	return url.replace(/.*\/\/([a-zA-Z])\..+/g, '$1')
+};
+
+
 //===========2D / 1D array coordinates mapping====================
 /*Hello! Your are given x and y and 2D array size tuple (width, height) and you have to:
 
@@ -749,6 +749,29 @@ function mxdiflg(a1, a2) {
 };
 
 mxdiflg(['123', '1234', '123456789', '12'], ['123', '123456', '1']);
+
+
+
+//=============== Simple Fun #34: Numbers Grouping =================
+/*You are given an array of integers that you want distribute between several groups. The first group should contain numbers from 1 to 104, the second should contain those from 104 + 1 to 2 x 104, ..., the 100th one should contain numbers from 99 x 104 + 1 to 106 and so on.*/
+
+function numbersGrouping(a) {
+	console.log('numbersGrouping');
+	// let obj = {};
+	// a.forEach(num => {
+	// 	let groupIndex = Math.trunc(num / 10000 - 0.01);
+	// 	obj[groupIndex] ? obj[groupIndex] += 1 : obj[groupIndex] = 1;
+	// });
+	// let counter = 0;
+	// for (let key in obj) {
+	// 	counter += (obj[key] + 1);
+	// };
+	// return counter;
+
+	return [...new Set(a.map(num => Math.trunc(num / 10000 - 0.0001)))].length + a.length;
+};
+
+numbersGrouping([10000, 1]);
 
 
 
