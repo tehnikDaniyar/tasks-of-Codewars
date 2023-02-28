@@ -1,5 +1,78 @@
 
 
+
+
+//============Direction REduction=================
+/*Once upon a time, on a way through the old wild mountainous west,…
+… a man was given directions to go from one point to another. The directions were "NORTH", "SOUTH", "WEST", "EAST". Clearly "NORTH" and "SOUTH" are opposite, "WEST" and "EAST" too.
+
+Going to one direction and coming back the opposite direction right away is a needless effort. Since this is the wild west, with dreadful weather and not much water, it's important to save yourself some energy, otherwise you might die of thirst!
+
+How I crossed a mountainous desert the smart way.
+The directions given to the man are, for example, the following (depending on the language):
+
+["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"].
+or
+{ "NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST" };
+or
+[North, South, South, East, West, North, West]
+You can immediately see that going "NORTH" and immediately "SOUTH" is not reasonable, better stay to the same place! So the task is to give to the man a simplified version of the plan. A better plan in this case is simply:*/
+
+//["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]
+function dirReduc(arr) {
+	// let obj = {};
+	// let res = [];
+
+	// arr.forEach(elem => obj[elem] ? obj[elem] += 1 : obj[elem] = 1);
+
+	// while (obj.NORTH > 0 && obj.SOUTH > 0) {
+	// 	for (let key in obj) {
+	// 		if (key === "NORTH") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 		if (key === "SOUTH") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 	};
+	// };
+
+	// while (obj.EAST > 0 && obj.WEST > 0) {
+	// 	for (let key in obj) {
+	// 		if (key === "EAST") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 		if (key === "WEST") {
+	// 			obj[key] -= 1;
+	// 		};
+	// 	};
+	// };
+
+
+	// for (let key in obj) {
+	// 	obj[key] ? res.push(key) : null;
+	// }
+	// return arr.reduce((res, vector) => {
+	// 	console.log("NORTH SOUTH".replace(/.+\s(\w+$)$/, '$1'));
+	// 	if (vector === 'NORTH' && res.replace(/.+\s(\w+$)$/, '$1') !== "SOUTH") { res = res + ' ' + vector };
+	// 	if (vector === 'SOUTH' && res.replace(/.+\s(\w+$)$/, '$1') !== "NORTH") { res + vector };
+	// 	if (vector === 'EAST' && res.replace(/.+\s(\w+$)$/, '$1') !== "WEST") { res + vector };
+	// 	if (vector === 'WEST' && res.replace(/.+\s(\w+$)$/, '$1') !== "EAST") { res + vector };
+	// 	return res;
+	// }, '')
+
+};
+
+dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])
+console.log(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]));
+
+
+
+//=============Extract the domain name from a URL=================
+function domainName(url) {
+	return url.replace(/.*\/\/([a-zA-Z])\..+/g, '$1')
+};
+
+
 //============Are they the "same"?==================
 /*Given two arrays a and b write a function comp(a, b) (orcompSame(a, b)) that checks whether the two arrays have the "same" elements, with the same multiplicities (the multiplicity of a member is the number of times it appears). "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.*/
 
@@ -55,6 +128,17 @@ function longestConsec(strarr, k) {
 };
 
 longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 4)
+
+
+
+//=============Does my number look big in this?====================
+/*A Narcissistic Number (or Armstrong Number) is a positive number which is the sum of its own digits, each raised to the power of the number of digits in a given base. In this Kata, we will restrict ourselves to decimal (base 10).*/
+
+function narcissistic(value) {
+	return [...`${value}`].map((num, i, arr) => num ** arr.length).reduce((summ, num) => summ + num) == value;
+};
+
+narcissistic(153);
 
 
 //=======Give me a Diamond============6 kyu=======
@@ -403,79 +487,6 @@ function expandedForm(num) {
 }
 
 let res = expandedForm(20324);
-
-
-
-
-//============Direction REduction=================
-/*Once upon a time, on a way through the old wild mountainous west,…
-… a man was given directions to go from one point to another. The directions were "NORTH", "SOUTH", "WEST", "EAST". Clearly "NORTH" and "SOUTH" are opposite, "WEST" and "EAST" too.
-
-Going to one direction and coming back the opposite direction right away is a needless effort. Since this is the wild west, with dreadful weather and not much water, it's important to save yourself some energy, otherwise you might die of thirst!
-
-How I crossed a mountainous desert the smart way.
-The directions given to the man are, for example, the following (depending on the language):
-
-["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"].
-or
-{ "NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST" };
-or
-[North, South, South, East, West, North, West]
-You can immediately see that going "NORTH" and immediately "SOUTH" is not reasonable, better stay to the same place! So the task is to give to the man a simplified version of the plan. A better plan in this case is simply:*/
-
-//["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]
-function dirReduc(arr) {
-	// let obj = {};
-	// let res = [];
-
-	// arr.forEach(elem => obj[elem] ? obj[elem] += 1 : obj[elem] = 1);
-
-	// while (obj.NORTH > 0 && obj.SOUTH > 0) {
-	// 	for (let key in obj) {
-	// 		if (key === "NORTH") {
-	// 			obj[key] -= 1;
-	// 		};
-	// 		if (key === "SOUTH") {
-	// 			obj[key] -= 1;
-	// 		};
-	// 	};
-	// };
-
-	// while (obj.EAST > 0 && obj.WEST > 0) {
-	// 	for (let key in obj) {
-	// 		if (key === "EAST") {
-	// 			obj[key] -= 1;
-	// 		};
-	// 		if (key === "WEST") {
-	// 			obj[key] -= 1;
-	// 		};
-	// 	};
-	// };
-
-
-	// for (let key in obj) {
-	// 	obj[key] ? res.push(key) : null;
-	// }
-	// return arr.reduce((res, vector) => {
-	// 	console.log("NORTH SOUTH".replace(/.+\s(\w+$)$/, '$1'));
-	// 	if (vector === 'NORTH' && res.replace(/.+\s(\w+$)$/, '$1') !== "SOUTH") { res = res + ' ' + vector };
-	// 	if (vector === 'SOUTH' && res.replace(/.+\s(\w+$)$/, '$1') !== "NORTH") { res + vector };
-	// 	if (vector === 'EAST' && res.replace(/.+\s(\w+$)$/, '$1') !== "WEST") { res + vector };
-	// 	if (vector === 'WEST' && res.replace(/.+\s(\w+$)$/, '$1') !== "EAST") { res + vector };
-	// 	return res;
-	// }, '')
-
-};
-
-dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])
-console.log(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]));
-
-
-
-//=============Extract the domain name from a URL=================
-function domainName(url) {
-	return url.replace(/.*\/\/([a-zA-Z])\..+/g, '$1')
-};
 
 
 //===========2D / 1D array coordinates mapping====================
