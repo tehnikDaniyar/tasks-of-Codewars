@@ -39,7 +39,11 @@ function six() {
 	return 6;
 }
 function seven(callback) {
-	callback
+	if (callback) {
+		return
+	} else {
+		return 7;
+	}
 }
 function eight() {
 	return 8;
