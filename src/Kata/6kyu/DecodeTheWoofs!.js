@@ -6,15 +6,24 @@
 
 function woofDecoder(str) {
 	console.log('woof');
-	const woof = new RegExp(/\.*w\.*o\.*o\.*f\.*/, 'gi');
+	const woof = new RegExp(/\.*w\.*o\.*o\.*f\.*/, 'i');
 	const template = '_abcdefghijklmnopqrstuvwxyz';
 	let arr1 = str.split('!');
-	let res = ''.search(woof);
-	// let leters = arr.map(voices => template[voices.split('-').filter(voice => voice.search(woof) !== -1).length]);
-	// console.log(leters);
-	// let arr2 = arr1.split('-');
-	// let arr3 = arr2.filter(x => x.search(woof));
+	let res = [];
 
+
+	arr1.forEach(word => {
+		let index = checkDogWord(word, woof);
+		if (index) {
+			res.push(template[index]);
+		}
+	})
+
+	return res.join('');
+}
+
+function checkDogWord(str, regExp) {
+	return str.split('-').filter(dogLetter => regExp.test(dogLetter)).length
 }
 
 woofDecoder("Woof-woof-woof-woof-woof-woof!Woof-woof-woof-woof-woof!Woof-woof-woof-woof-woof!Woof-woof-woof-woof!Woof-woof-woof-woof-woof-woof-woof-woof-woof-woof-woof-woof-woof!Woof-woof-woof-woof-woof!");
