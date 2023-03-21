@@ -204,17 +204,16 @@ longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffu
 /*Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case). The next words should be always capitalized.*/
 
 function toCamelCase(str) {
-	console.log("Convert string to camel case");
-	if (str.length === 0) {
-		return "";
-	};
-	let onlyWordString = str.replace(/[^a-zA-Z]/g, ' ');
-	let arr = onlyWordString.split(" ").map((word, index) => index !== 0 ? word[0].toUpperCase() + word.slice(1) : word);
-	let result = arr.join("");
-	return result;
+	str.length === 0 ? "" :
+		str.replace(/[^a-zA-Z]/g, ' ')
+			.map((word, index) => index !== 0 ? word[0].toUpperCase() + word.slice(1) : word)
+			.split(" ")
+			.join("");
 };
 
-toCamelCase("the-stealth-warrior");
+// function toCamelCase(str) {
+// 	return str.replace(/[-_](.)/g, (_, c) => c.toUpperCase());
+// }
 
 
 
@@ -302,6 +301,40 @@ function hamming(a, b) {
 	};
 };
 // const hamming = (a, b) => [...a].reduce((pre, val, idx) => pre + (val !== b[idx]), 0);
+
+
+
+//==============Kids and candies=================
+/*I've invited some kids for my son's birthday, during which I will give to each kid some amount of candies.
+
+Every kid hates receiving less amount of candies than any other kids, and I don't want to have any candies left - giving it to my kid would be bad for his teeth.
+
+However, not every kid invited will come to my birthday party.
+
+What is the minimum amount of candies I have to buy, so that no matter how many kids come to the party in the end, I can still ensure that each kid can receive the same amount of candies, while leaving no candies left?
+
+It's ensured that at least one kid will participate in the party.*/
+
+function candiesToBuy(kids) {
+	let counter = 1;
+	end = false;
+	while (!end) {
+		let check = counter;
+		for (let i = 1; i <= kids; i++) {
+			if (counter % i !== 0) {
+				counter++;
+				break;
+			};
+		};
+		if (check === counter) {
+			end = true;
+		}
+	}
+	return counter;
+};
+
+console.log(candiesToBuy(100));
+
 
 
 
@@ -610,243 +643,6 @@ function expandedForm(num) {
 let res = expandedForm(20324);
 
 
-//=======Are You Playing Banjo?================
-// Create a function which answers the question "Are you playing banjo?".
-// If your name starts with the letter "R" or lower case "r", you are playing banjo!
-
-// The function takes a name as its only argument, and returns one of the following strings:
-
-const areYouPlayingBanjo = (name) => {
-	return name[0].toLowerCase() === 'r' ? `${name} plays banjo` : `${name} does not play banjo`;
-};
-
-//============best practices============================================================
-// function areYouPlayingBanjo(name) {
-// 	return name + (/^r/i.test(name) ? " plays " : " does not play ") + "banjo";
-// }
-
-
-
-
-
-
-//==========calculate BMI=========
-/*Write function bmi that calculates body mass index (bmi = weight / height2).
-
-if bmi <= 18.5 return "Underweight"
-
-if bmi <= 25.0 return "Normal"
-
-if bmi <= 30.0 return "Overweight"
-
-if bmi > 30 return "Obese"*/
-
-function bmi(weight, height) {
-	let BMI = weight / (height ** 2);
-	if (BMI <= 18.5) {
-		return "Underweight";
-	};
-	if (BMI > 18.5 && BMI <= 25) {
-		return "Normal";
-	};
-	if (BMI > 25 && BMI <= 30) {
-		return "Overweight";
-	};
-	if (BMI > 30) {
-		return "Obese";
-	}
-};
-
-
-console.log(bmi(80, 1.80));
-
-// const bmi = (w, h, bmi = w/h/h) =>  bmi <= 18.5 ? "Underweight" :
-//                                     bmi <= 25 ? "Normal" :
-//                                     bmi <= 30 ? "Overweight" : "Obese";
-/*Complete the method that takes a boolean value and return a "Yes" string for true, or a "No" string for false.*/
-function boolToWord(bool) {
-	bool ? 'Yes' : 'No'
-}
-
-
-
-//==========count by x================
-/*Create a function with two arguments that will return an array of the first n multiples of x.
-Assume both the given number and the number of times to count will be positive numbers greater than 0.*/
-
-function countBy(x, n) {
-	let arr = [];
-	let y = x;
-	for (let i = 0; i < n; i++) {
-		arr[i] = y;
-		y += x;
-	};
-	return arr;
-}
-
-console.log(countBy(2, 10));
-
-// const countBy = (x, n) =>
-//   [...Array(n)].map((_, idx) => ++idx * x);
-
-// const countBy = (x, n) => Array.from({length: n}, (v, k) => (k + 1) * x)
-
-
-
-//==========Find the first non-consecutive numbe============
-/*Your task is to find the first element of an array that is not consecutive.
-
-By not consecutive we mean not exactly 1 larger than the previous element of the array.
-
-E.g. If we have an array [1,2,3,4,6,7,8] then 1 then 2 then 3 then 4 are all consecutive but 6 is not, so that's the first non-consecutive number.
-
-If the whole array is consecutive then return null2.*/
-
-function firstNonConsecutive(arr) {
-	let res = arr.filter((num, index) => index > 0 && num - arr[index - 1] > 1)[0];
-	return res || res === 0 ? res : null;
-}
-/*Who remembers back to their time in the schoolyard, when girls would take a flower and tear its petals, saying each of the following phrases each time a petal was torn:
-
-"I love you"
-"a little"
-"a lot"
-"passionately"
-"madly"
-"not at all"
-If there are more than 6 petals, you start over with "I love you" for 7 petals, "a little" for 8 petals and so on.
-
-When the last petal was torn there were cries of excitement, dreams, surging thoughts and emotions.
-
-Your goal in this kata is to determine which phrase the girls would say at the last petal for a flower of a given number of petals. The number of petals is always greater than 0.*/
-
-function howMuchILoveYou(nbPetals) {
-	let answers = [
-		"I love you",
-		"a little",
-		"a lot",
-		"passionately",
-		"madly",
-		"not at all",
-	];
-
-	let k = -1;
-	for (let i = 0; i < nbPetals; i++) {
-		if (k < 5) {
-			k += 1;
-		} else {
-			k = 0;
-		};
-	};
-
-	return answers[k];
-	// 1   2   3   4   5   6
-	// 7   8   9  10  11  12
-	// 13  14  15 16  17  18
-
-}
-
-howMuchILoveYou(6);
-
-// function howMuchILoveYou(nbPetals) {
-// 	let phrase = {
-// 	  0: "not at all",
-// 	  1: "I love you",
-// 	  2: "a little",
-// 	  3: "a lot",
-// 	  4: "passionately",
-// 	  5: "madly"
-// 	}
-// 	return phrase[nbPetals%6]
-//  }
-
-
-/*Nathan loves cycling.
-
-Because Nathan knows it is important to stay hydrated, he drinks 0.5 litres of water per hour of cycling.
-
-You get given the time in hours and you need to return the number of litres Nathan will drink, rounded to the smallest value.*/
-
-function litres(time) {
-	return Math.floor(time * 0.5);
-};
-
-// function litres(time) {
-// 	return time>>1
-//  }
-
-
-
-
-
-//================Multiplication table for number==============
-/*Your goal is to return multiplication table for number that is always an integer from 1 to 10.*/
-
-function multiTable(number) {
-	let res = '';
-
-	for (let i = 10; i >= 1; i--) {
-		let str = String(`${i} * ${number}  = ${number * i}`);
-		res = `${str}${res.replace(`${i + 1}`, `\\n${i + 1}`)}`;
-	};
-
-	return res;
-}
-
-
-
-//========= Name Shuffler ==============
-/*Write a function that returns a string in which firstname is swapped with last name.*/
-function nameShuffler(str) {
-	return str.split(' ').reverse().join(' ');
-}
-
-
-
-//===============No zeros for heros===================
-/*Numbers ending with zeros are boring.
-
-They might be fun in your world, but not here.
-
-Get rid of them. Only the ending ones.*/
-
-function noBoringZeros(n) {
-	return String(n).replace(/0+$/, '');
-};
-let counter = 0;
-function id() {
-	return counter++;
-};
-
-console.log(id());
-console.log(id());
-console.log(id());
-console.log(id());
-console.log(id());
-console.log(id());
-
-
-
-
-//===============Super Duper Easy==================
-const problem = (x) => {
-	return typeof x === 'number' ? x * 50 + 6 : "Error";
-};
-
-let sdsdsds = problem(10);
-
-
-
-//================Volume of a Cuboid===============
-/*Bob needs a fast way to calculate the volume of a cuboid with three values: the length, width and height of the cuboid. Write a function to help Bob with this calculation.*/
-
-class Kata {
-	static getVolumeOfCuboid(length, width, height) {
-		return length * width * height
-	}
-}
-
-
 //===========2D / 1D array coordinates mapping====================
 /*Hello! Your are given x and y and 2D array size tuple (width, height) and you have to:
 
@@ -1066,6 +862,21 @@ function f(x, y, z) {
 };
 
 console.log(f(2, 2, 3));
+
+
+
+//============Find the capitals=================
+/*Write a function that takes a single string (word) as argument. The function must return an ordered list containing the indexes of all capital letters in the string.*/
+
+var capitals = function (word) {
+	console.log("find the capitals");
+	return word.split('').map(letter => letter === letter.toUpperCase() ? word.indexOf(letter) : "x")
+		.filter(elem => elem != "x");
+};
+
+// const capitals = word => { return word.match(/[A-Z]/g).map( x => { return word.indexOf(x) }) }
+
+capitals("WpDDppR");
 
 
 //==========find the middle element============
@@ -1400,3 +1211,240 @@ function Fighter(name, health, damagePerAttack) {
 };
 
 console.log(winner);
+
+
+//=======Are You Playing Banjo?================
+// Create a function which answers the question "Are you playing banjo?".
+// If your name starts with the letter "R" or lower case "r", you are playing banjo!
+
+// The function takes a name as its only argument, and returns one of the following strings:
+
+const areYouPlayingBanjo = (name) => {
+	return name[0].toLowerCase() === 'r' ? `${name} plays banjo` : `${name} does not play banjo`;
+};
+
+//============best practices============================================================
+// function areYouPlayingBanjo(name) {
+// 	return name + (/^r/i.test(name) ? " plays " : " does not play ") + "banjo";
+// }
+
+
+
+
+
+
+//==========calculate BMI=========
+/*Write function bmi that calculates body mass index (bmi = weight / height2).
+
+if bmi <= 18.5 return "Underweight"
+
+if bmi <= 25.0 return "Normal"
+
+if bmi <= 30.0 return "Overweight"
+
+if bmi > 30 return "Obese"*/
+
+function bmi(weight, height) {
+	let BMI = weight / (height ** 2);
+	if (BMI <= 18.5) {
+		return "Underweight";
+	};
+	if (BMI > 18.5 && BMI <= 25) {
+		return "Normal";
+	};
+	if (BMI > 25 && BMI <= 30) {
+		return "Overweight";
+	};
+	if (BMI > 30) {
+		return "Obese";
+	}
+};
+
+
+console.log(bmi(80, 1.80));
+
+// const bmi = (w, h, bmi = w/h/h) =>  bmi <= 18.5 ? "Underweight" :
+//                                     bmi <= 25 ? "Normal" :
+//                                     bmi <= 30 ? "Overweight" : "Obese";
+/*Complete the method that takes a boolean value and return a "Yes" string for true, or a "No" string for false.*/
+function boolToWord(bool) {
+	bool ? 'Yes' : 'No'
+}
+
+
+
+//==========count by x================
+/*Create a function with two arguments that will return an array of the first n multiples of x.
+Assume both the given number and the number of times to count will be positive numbers greater than 0.*/
+
+function countBy(x, n) {
+	let arr = [];
+	let y = x;
+	for (let i = 0; i < n; i++) {
+		arr[i] = y;
+		y += x;
+	};
+	return arr;
+}
+
+console.log(countBy(2, 10));
+
+// const countBy = (x, n) =>
+//   [...Array(n)].map((_, idx) => ++idx * x);
+
+// const countBy = (x, n) => Array.from({length: n}, (v, k) => (k + 1) * x)
+
+
+
+//==========Find the first non-consecutive numbe============
+/*Your task is to find the first element of an array that is not consecutive.
+
+By not consecutive we mean not exactly 1 larger than the previous element of the array.
+
+E.g. If we have an array [1,2,3,4,6,7,8] then 1 then 2 then 3 then 4 are all consecutive but 6 is not, so that's the first non-consecutive number.
+
+If the whole array is consecutive then return null2.*/
+
+function firstNonConsecutive(arr) {
+	let res = arr.filter((num, index) => index > 0 && num - arr[index - 1] > 1)[0];
+	return res || res === 0 ? res : null;
+}
+/*Who remembers back to their time in the schoolyard, when girls would take a flower and tear its petals, saying each of the following phrases each time a petal was torn:
+
+"I love you"
+"a little"
+"a lot"
+"passionately"
+"madly"
+"not at all"
+If there are more than 6 petals, you start over with "I love you" for 7 petals, "a little" for 8 petals and so on.
+
+When the last petal was torn there were cries of excitement, dreams, surging thoughts and emotions.
+
+Your goal in this kata is to determine which phrase the girls would say at the last petal for a flower of a given number of petals. The number of petals is always greater than 0.*/
+
+function howMuchILoveYou(nbPetals) {
+	let answers = [
+		"I love you",
+		"a little",
+		"a lot",
+		"passionately",
+		"madly",
+		"not at all",
+	];
+
+	let k = -1;
+	for (let i = 0; i < nbPetals; i++) {
+		if (k < 5) {
+			k += 1;
+		} else {
+			k = 0;
+		};
+	};
+
+	return answers[k];
+	// 1   2   3   4   5   6
+	// 7   8   9  10  11  12
+	// 13  14  15 16  17  18
+
+}
+
+howMuchILoveYou(6);
+
+// function howMuchILoveYou(nbPetals) {
+// 	let phrase = {
+// 	  0: "not at all",
+// 	  1: "I love you",
+// 	  2: "a little",
+// 	  3: "a lot",
+// 	  4: "passionately",
+// 	  5: "madly"
+// 	}
+// 	return phrase[nbPetals%6]
+//  }
+
+
+/*Nathan loves cycling.
+
+Because Nathan knows it is important to stay hydrated, he drinks 0.5 litres of water per hour of cycling.
+
+You get given the time in hours and you need to return the number of litres Nathan will drink, rounded to the smallest value.*/
+
+function litres(time) {
+	return Math.floor(time * 0.5);
+};
+
+// function litres(time) {
+// 	return time>>1
+//  }
+
+
+
+
+
+//================Multiplication table for number==============
+/*Your goal is to return multiplication table for number that is always an integer from 1 to 10.*/
+
+function multiTable(number) {
+	let res = '';
+
+	for (let i = 10; i >= 1; i--) {
+		let str = String(`${i} * ${number}  = ${number * i}`);
+		res = `${str}${res.replace(`${i + 1}`, `\\n${i + 1}`)}`;
+	};
+
+	return res;
+}
+
+
+
+//========= Name Shuffler ==============
+/*Write a function that returns a string in which firstname is swapped with last name.*/
+function nameShuffler(str) {
+	return str.split(' ').reverse().join(' ');
+}
+
+
+
+//===============No zeros for heros===================
+/*Numbers ending with zeros are boring.
+
+They might be fun in your world, but not here.
+
+Get rid of them. Only the ending ones.*/
+
+function noBoringZeros(n) {
+	return String(n).replace(/0+$/, '');
+};
+let counter = 0;
+function id() {
+	return counter++;
+};
+
+console.log(id());
+console.log(id());
+console.log(id());
+console.log(id());
+console.log(id());
+console.log(id());
+
+
+
+
+//===============Super Duper Easy==================
+const problem = (x) => {
+	return typeof x === 'number' ? x * 50 + 6 : "Error";
+};
+
+let sdsdsds = problem(10);
+
+
+
+//================Volume of a Cuboid===============
+/*Bob needs a fast way to calculate the volume of a cuboid with three values: the length, width and height of the cuboid. Write a function to help Bob with this calculation.*/
+
+class Kata {
+	static getVolumeOfCuboid(length, width, height) {
+		return length * width * height
+	}
+}
