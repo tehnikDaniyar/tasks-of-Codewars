@@ -29,5 +29,5 @@ function candiesToBuy(kids) {
 	return counter;
 };
 
-console.log(candiesToBuy(100));
+console.log(candiesToBuy(10));
 
