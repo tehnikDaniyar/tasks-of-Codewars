@@ -161,6 +161,99 @@ function comp(array1, array2) {
 
 let wewewe = comp([3, 5, 0, 3, 2, 0, 2, 9, 2, 1, 1, 9, 7, 8, 6, 8, 2, 2, 5], [4, 4, 9, 1, 81, 36, 4, 4, 81, 1, 25, 64, 9, 64, 1, 49, 4, 25, 0])
 
+
+
+//===============Build a pile of Cubes===================
+
+/*Your task is to construct a building which will be a pile of n cubes. The cube at the bottom will have a volume of 
+�
+3
+n 
+3
+ , the cube above will have volume of 
+(
+�
+−
+1
+)
+3
+(n−1) 
+3
+  and so on until the top which will have a volume of 
+1
+3
+1 
+3
+ .
+
+You are given the total volume m of the building. Being given m can you find the number n of cubes you will have to build?
+
+The parameter of the function findNb (find_nb, find-nb, findNb, ...) will be an integer m and you have to return the integer n such as 
+�
+3
++
+(
+�
+−
+1
+)
+3
++
+(
+�
+−
+2
+)
+3
++
+.
+.
+.
++
+1
+3
+=
+�
+n 
+3
+ +(n−1) 
+3
+ +(n−2) 
+3
+ +...+1 
+3
+ =m if such a n exists or -1 if there is no such n.
+
+Examples:
+findNb(1071225) --> 45
+
+findNb(91716553919377) --> -1*/
+
+function findNb(m) {
+	console.log("Build a pipe of cubes");
+	let counter = 0;
+	let cube = 1;
+
+	while (m > 0) {
+		m = m - cube ** 3;
+		counter++;
+		cube++;
+		if (m < 0) {
+			return -1;
+		}
+	};
+
+	return counter;
+};
+
+findNb(4183059834009);
+
+// function findNb(m) {
+// 	var n = 0
+// 	while (m > 0) m -= ++n**3
+// 	return m ? -1 : n
+//  }
+
 //========Consecutive strings======================
 // You are given an array(list) strarr of strings and an integer k. Your task is to
 // return the first longest string consisting of k consecutive strings taken in the array.
