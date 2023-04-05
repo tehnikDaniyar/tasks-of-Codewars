@@ -142,619 +142,6 @@ function domainName(url) {
 };
 
 
-//============Are they the "same"?==================
-/*Given two arrays a and b write a function comp(a, b) (orcompSame(a, b)) that checks whether the two arrays have the "same" elements, with the same multiplicities (the multiplicity of a member is the number of times it appears). "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.*/
-
-function comp(array1, array2) {
-	if (array1 || array2) {
-		for (let num of array2) {
-			let b = Math.sqrt(num);
-			if (array1.indexOf(b) === -1) {
-				return false;
-			};
-		}
-		return true;
-	} else {
-		return false;
-	}
-};
-
-let wewewe = comp([3, 5, 0, 3, 2, 0, 2, 9, 2, 1, 1, 9, 7, 8, 6, 8, 2, 2, 5], [4, 4, 9, 1, 81, 36, 4, 4, 81, 1, 25, 64, 9, 64, 1, 49, 4, 25, 0])
-
-
-
-//===============Build a pile of Cubes===================
-
-/*Your task is to construct a building which will be a pile of n cubes. The cube at the bottom will have a volume of 
-�
-3
-n 
-3
- , the cube above will have volume of 
-(
-�
-−
-1
-)
-3
-(n−1) 
-3
-  and so on until the top which will have a volume of 
-1
-3
-1 
-3
- .
-
-You are given the total volume m of the building. Being given m can you find the number n of cubes you will have to build?
-
-The parameter of the function findNb (find_nb, find-nb, findNb, ...) will be an integer m and you have to return the integer n such as 
-�
-3
-+
-(
-�
-−
-1
-)
-3
-+
-(
-�
-−
-2
-)
-3
-+
-.
-.
-.
-+
-1
-3
-=
-�
-n 
-3
- +(n−1) 
-3
- +(n−2) 
-3
- +...+1 
-3
- =m if such a n exists or -1 if there is no such n.
-
-Examples:
-findNb(1071225) --> 45
-
-findNb(91716553919377) --> -1*/
-
-function findNb(m) {
-	console.log("Build a pipe of cubes");
-	let counter = 0;
-	let cube = 1;
-
-	while (m > 0) {
-		m = m - cube ** 3;
-		counter++;
-		cube++;
-		if (m < 0) {
-			return -1;
-		}
-	};
-
-	return counter;
-};
-
-findNb(4183059834009);
-
-// function findNb(m) {
-// 	var n = 0
-// 	while (m > 0) m -= ++n**3
-// 	return m ? -1 : n
-//  }
-
-//========Consecutive strings======================
-// You are given an array(list) strarr of strings and an integer k. Your task is to
-// return the first longest string consisting of k consecutive strings taken in the array.
-
-//========exsamples=======
-// strarr = ["tree", "foling", "trashy", "blue", "abcdef", "uvwxyz"], k = 2
-
-// Concatenate the consecutive strings of strarr by 2, we get:
-
-// treefoling   (length 10)  concatenation of strarr[0] and strarr[1]
-// folingtrashy ("      12)  concatenation of strarr[1] and strarr[2]
-// trashyblue   ("      10)  concatenation of strarr[2] and strarr[3]
-// blueabcdef   ("      10)  concatenation of strarr[3] and strarr[4]
-// abcdefuvwxyz ("      12)  concatenation of strarr[4] and strarr[5]
-
-// Two strings are the longest: "folingtrashy" and "abcdefuvwxyz".
-// The first that came is "folingtrashy" so
-// longest_consec(strarr, 2) should return "folingtrashy".
-
-// In the same way:
-// longest_consec(["zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"], 2) --> "abigailtheta"
-
-function longestConsec(strarr, k) {
-	let result = '';
-	if (k >= strarr.length || k <= 0) {
-		return "";
-	} else {
-		strarr.forEach((elem, index) => {
-			let word = strarr.slice(index, index + k).reduce((s, e) => s + e, "");
-			word.length > result.length ? result = word : null;
-		})
-		return result
-	};
-};
-
-longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 4)
-
-
-
-//=============Convert string to camel case=============
-/*Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case). The next words should be always capitalized.*/
-
-function toCamelCase(str) {
-	str.length === 0 ? "" :
-		str.replace(/[^a-zA-Z]/g, ' ')
-			.map((word, index) => index !== 0 ? word[0].toUpperCase() + word.slice(1) : word)
-			.split(" ")
-			.join("");
-};
-
-// function toCamelCase(str) {
-// 	return str.replace(/[-_](.)/g, (_, c) => c.toUpperCase());
-// }
-
-
-
-
-
-
-//================= Coordinates Validator =============
-/*You need to create a function that will validate if given parameters are valid geographical coordinates.
-
-Valid coordinates look like the following: "23.32353342, -32.543534534". The return value should be either true or false.
-
-Latitude (which is first float) can be between 0 and 90, positive or negative. Longitude (which is second float) can be between 0 and 180, positive or negative.
-
-Coordinates can only contain digits, or one of the following symbols (including space after comma) __ -, . __
-
-There should be no space between the minus "-" sign and the digit after it.*/
-
-function isValidCoordinates(coordinates) {
-	return /^-*([1-8]?[0-9]?|90)\.*\d*,\s-*([1-9]\d?|(1[0-7][0-9]|180))\.*\d*$/.test(coordinates)
-};
-
-isValidCoordinates("4, -3");
-
-
-
-//============Decode the woofs!===================
-/*Justin has an exceptionally smart dog. In the latest show of its unparalleled intelligence, the dog learned to communicate human words. To do that, it woofs the exact number of times it takes to get to the right letter in the English alphabet. For example, if the dog is interested in the letter "A", it woofs just one time, if it's "B", it woofs two times and so on. Justin is amazed by his pet, but he also finds it challenging to translate the woofs in his head. Write a decoder for him that takes a string of hyphen-separated woofs and returns their human-language representation*/
-
-function woofDecoder(str) {
-	console.log('woof');
-	const woof = new RegExp(/\.*w\.*o\.*o\.*f\.*/, 'i');
-	const template = '_abcdefghijklmnopqrstuvwxyz';
-	let arr1 = str.split('!');
-	let res = [];
-
-
-	arr1.forEach(word => {
-		let index = checkDogWord(word, woof);
-		if (index) {
-			res.push(template[index]);
-		}
-	})
-
-	return res.join('');
-}
-
-function checkDogWord(str, regExp) {
-	return str.split('-').filter(dogLetter => regExp.test(dogLetter)).length
-}
-
-woofDecoder("Woof-woof-woof-woof-woof-woof!Woof-woof-woof-woof-woof!Woof-woof-woof-woof-woof!Woof-woof-woof-woof!Woof-woof-woof-woof-woof-woof-woof-woof-woof-woof-woof-woof-woof!Woof-woof-woof-woof-woof!");
-
-
-
-
-
-//=============Does my number look big in this?====================
-/*A Narcissistic Number (or Armstrong Number) is a positive number which is the sum of its own digits, each raised to the power of the number of digits in a given base. In this Kata, we will restrict ourselves to decimal (base 10).*/
-
-function narcissistic(value) {
-	return [...`${value}`].map((num, i, arr) => num ** arr.length).reduce((summ, num) => summ + num) == value;
-};
-
-narcissistic(153);
-
-
-//=======Give me a Diamond============6 kyu=======
-/*Jamie is a programmer, and James' girlfriend. She likes diamonds, and wants a diamond string from James. Since James doesn't know how to make this happen, he needs your help.
-
-Task
-You need to return a string that looks like a diamond shape when printed on the screen, using asterisk (*) characters. Trailing spaces should be removed, and every line must be terminated with a newline character (\n).
-
-Return null/nil/None/... if the input is an even number or negative, as it is not possible to print a diamond of even or negative size.*/
-
-function diamond(n) {
-	let arr = [...Array(n)];
-	let arr2 = [];
-	let a = '*';
-	let counter = 1;
-	for (let i = 0; i < n; i++) {
-		arr.splice(Math.ceil(n / 2) - 1 - i, i + 1, a);
-		arr2.push(arr.join(undefined))
-		if (counter < n) {
-			a += '**';
-			counter += 2;
-		} else {
-			a = a.replace(/\*{2}/, '');
-		};
-	};
-	let res = arr2.join(' ').replace(/\s/g, '\n');
-	return res;
-};
-
-console.log(diamond(7));
-
-
-//==========Hamming Distance==============
-/*The Hamming Distance is a measure of similarity between two strings of equal length. Complete the function so that it returns the number of positions where the input strings do not match.*/
-
-function hamming(a, b) {
-	let res = [];
-	for (let i = 0; i < a.length; i++) {
-		a[i] === b[i] ? null : res.push(a[i]);
-	};
-};
-// const hamming = (a, b) => [...a].reduce((pre, val, idx) => pre + (val !== b[idx]), 0);
-
-
-
-//==============Kids and candies=================
-/*I've invited some kids for my son's birthday, during which I will give to each kid some amount of candies.
-
-Every kid hates receiving less amount of candies than any other kids, and I don't want to have any candies left - giving it to my kid would be bad for his teeth.
-
-However, not every kid invited will come to my birthday party.
-
-What is the minimum amount of candies I have to buy, so that no matter how many kids come to the party in the end, I can still ensure that each kid can receive the same amount of candies, while leaving no candies left?
-
-It's ensured that at least one kid will participate in the party.*/
-
-function candiesToBuy(kids) {
-	let counter = 1;
-	end = false;
-	while (!end) {
-		let check = counter;
-		for (let i = 1; i <= kids; i++) {
-			if (counter % i !== 0) {
-				counter++;
-				break;
-			};
-		};
-		if (check === counter) {
-			end = true;
-		}
-	}
-	return counter;
-};
-
-console.log(candiesToBuy(10));
-
-
-
-
-
-
-//========================Mexican Wave====================
-function wave(str) {
-	let str2 = str.split('');
-	let result = [];
-	str2.forEach((letter, index) => {
-		if (letter !== ' ') {
-			let array = str.split('');
-			let upperLetter = letter.toUpperCase();
-			array.splice(index, 1, upperLetter);
-			result.push(array.join(''));
-		};
-	});
-	return result;
-};
-
-// var wave=w=>[...w].map((a,i)=>w.slice(0,i)+a.toUpperCase()+w.slice(i+1)).filter(a=>a!=w)
-
-
-
-
-
-//=================Pair of gloves====================
-/*Winter is coming, you must prepare your ski holidays. The objective of this kata is to determine the number of pair of gloves you can constitute from the gloves you have in your drawer.
-
-Given an array describing the color of each glove, return the number of pairs you can constitute, assuming that only gloves of the same color can form pairs.*/
-
-function numberOfPairs(gloves) {
-	let obj = [];
-
-	gloves.forEach(color => {
-		obj[color] ? obj[color] += 1 : obj[color] = 1;
-	});
-
-	let counter = 0;
-
-	for (let key in obj) {
-		counter += Math.floor(obj[key] / 2);
-	};
-
-};
-
-// function numberOfPairs(gloves) {
-// 	return [...new Set(gloves)].reduce((acc, el) => acc + ~~(gloves.filter(x => x === el).length / 2), 0);
-// }
-
-
-
-//=============Persistent Bugger=====================
-/*Write a function, persistence, that takes in a positive parameter num and returns its multiplicative persistence, which is the number of times you must multiply the digits in num until you reach a single digit.*/
-
-function persistence(num) {
-	let counter = 0;
-	while (String(num).length > 1) {
-		num = Number(String(num).split('').reduce((res, dig) => res * dig));
-		counter++;
-	};
-	return counter;
-};
-
-persistence(123);
-
-
-
-//============Simple Fun #242: Caesar Box Cipher Encoding=========
-/*Caesar Box is a simple transposition cipher used in the Roman Empire. It is described as the following two-step process:
-
-The characters of the given message are broken into n lines of equal lengths and stacked up.
-The letters from the resulting rectangle are written from top to bottom column by column.
-Given a string message, count the number of different n such that the message, obtained by applying encoding two times, is the same as initial message.*/
-
-function caesarBoxCipherEncoding(message) {
-	let counter = 0;
-	for (let i = 2; i <= Math.floor(message.length / 2); i++) {
-		if (message.length % i === 0) {
-			counter++;
-		};
-	};
-	return counter;
-};
-
-
-
-
-//===============Sudoku board validator===================
-function validateSudoku(board) {
-	//====cheking rows==========
-	for (let arr of board) {
-		if (!checkingRow(arr)) {
-			return false
-		};
-	};
-
-	//====cheking columns========
-	for (let i = 0; i < 9; i++) {
-		let column = [
-			board[0][i],
-			board[1][i],
-			board[2][i],
-			board[3][i],
-			board[4][i],
-			board[5][i],
-			board[6][i],
-			board[7][i],
-			board[8][i],
-		];
-		if (!checkingRow(column)) {
-			return false;
-		};
-	};
-
-	//======checking boxes========
-
-	return true;
-};
-
-function checkingRow(arr) {
-	let set = new Set(arr)
-	return !(arr.indexOf(0) !== -1 || [...set].length !== arr.length)
-}
-
-const sudoku =
-	[
-		[1, 2, 3, 4, 5, 6, 7, 8, 9],
-		[2, 3, 4, 5, 6, 7, 8, 9, 1],
-		[3, 4, 5, 6, 7, 8, 9, 1, 2],
-		[4, 5, 6, 7, 8, 9, 1, 2, 3],
-		[5, 6, 7, 8, 9, 1, 2, 3, 4],
-		[6, 7, 8, 9, 1, 2, 3, 4, 5],
-		[7, 8, 9, 1, 2, 3, 4, 5, 6],
-		[8, 9, 1, 2, 3, 4, 5, 6, 7],
-		[9, 1, 2, 3, 4, 5, 6, 7, 8],
-	];
-
-console.log(validateSudoku(sudoku));
-console.log([0, 0, 0].indexOf(0));
-
-
-
-//============Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!================
-// function sumDigPow(a, b) {
-// 	let arr = [];
-// 	while (a !== b) {
-// 		arr.push(a);
-// 		a++;
-// 	};
-// 	return arr.filter(num => check(num));
-// };
-
-// function check(num) {
-// 	return String(num).split('')
-// 		.map((num, index) => Math.pow(Number(num), index + 1))
-// 		.reduce((sum, num) => sum + num) === num;
-// };
-
-
-function sumDigPow(a, b) {
-	let arr = [];
-	while (a <= b) {
-		String(num).split('')
-			.map((num, index) => Math.pow(Number(num), index + 1))
-			.reduce((sum, num) => sum + num) === num ? arr.push(a) : null;
-		a++;
-	};
-	return arr;
-};
-
-
-
-
-/*You live in the city of Cartesia where all roads are laid out in a perfect grid. You arrived ten minutes too early to an appointment, so you decided to take the opportunity to go for a short walk. The city provides its citizens with a Walk Generating App on their phones -- everytime you press the button it sends you an array of one-letter strings representing directions to walk (eg. ['n', 's', 'w', 'e']). You always walk only a single block for each letter (direction) and you know it takes you one minute to traverse one city block, so create a function that will return true if the walk the app gives you will take you exactly ten minutes (you don't want to be early or late!) and will, of course, return you to your starting point. Return false otherwise.
-
-Note: you will always receive a valid array containing a random assortment of direction letters ('n', 's', 'e', or 'w' only). It wil*/
-
-// function isValidWalk(walk) {
-// 	if (walk.length === 10) {
-// 		// a = -1;
-// 		// w = 2;
-// 		// d = 1;
-// 		// s = -2;
-// 		let res = walk.map(elem => {
-// 			if (elem === 'a') {
-// 				return -1;
-// 			} else if (elem === 'w') {
-// 				return 2;
-// 			} else if (elem === 'd') {
-// 				return 1;
-// 			} else if (elem === 's') {
-// 				return -2;
-// 			}
-// 		}).reduce((a, e) => a + e);
-// 		return res === 0;
-
-// 	} else {
-// 		return false;
-// 	}
-// } 
-
-function isValidWalk(walk) {
-	walk.join(' ').replace()
-}
-		// w = -1;
-		// n = 2;
-		// e = 1;
-		// s = -2;
-
-
-
-//============Title Case=============
-/*A string is considered to be in title case if each word in the string is either (a) capitalised (that is, only the first letter of the word is in upper case) or (b) considered to be an exception and put entirely into lower case unless it is the first word, which is always capitalised.
-
-Write a function that will convert a string into title case, given an optional list of exceptions (minor words). The list of minor words will be given as a string with each word separated by a space. Your function should ignore the case of the minor words string -- it should behave in the same way even if the case of the minor word string is changed.*/
-
-function titleCase(title, minorWords) {
-
-
-
-	console.log('title case');
-	// return title.split(' ').map((word) => {
-	// 	new RegExp(word).test(minorWords) ? word.toLowerCase() : word[0].toUpperCase() + word.slice(1, -1).toLowerCase();
-	// }).join(' ');
-
-	let arr = title.split(' ');
-	let newArr = arr.map((word, index) => {
-		let has = minorWords ? new RegExp("\s" + word + "\s", 'ig').test(minorWords) : false;
-		let res;
-		if (has && index !== 0) {
-			res = word.toLowerCase();
-		} else {
-			res = word[0].toUpperCase() + word.slice(1).toLowerCase();
-		};
-		return res;
-	});
-	return newArr.join(' ');
-}
-
-titleCase("First a of in", "an often into");
-
-
-
-
-//==========Unique In Order======================
-/*Implement the function unique_in_order which takes as argument a sequence and returns a list of items without any elements with the same value next to each other and preserving the original order of elements.*/
-
-var uniqueInOrder = function (iterable) {
-	//your code here - remember iterable can be a string or an array
-	// let arr = iterable.split('');
-	// let result = [arr[0],];
-
-	// for (let i = 1; i < arr.length; i++) {
-	// 	if (arr[i - 1] != arr[i]) {
-	// 		result.push(arr[i])
-	// 	};
-	// };
-
-	// return result
-
-	return [...iterable].filter((elem, index) => index === 0 || elem !== iterable[index - 1])
-};
-
-
-
-/*Write Number in Expanded Form
-You will be given a number and you will need to return it as a string in Expanded Form. For example:
-
-expandedForm(12); // Should return '10 + 2'
-expandedForm(42); // Should return '40 + 2'
-expandedForm(70304); // Should return '70000 + 300 + 4'
-NOTE: All numbers will be whole numbers greater than 0.*/
-
-function expandedForm(num) {
-	let arr = [];
-	let divider = 10;
-
-	for (let i = 0; i < String(num).length; i++) {
-		let res = num % divider;
-
-		if (i === 0) {
-			arr.push(res);
-		} else {
-			let x = num % (divider / 10);
-			if (res !== x) {
-				arr.push(res - x);
-			};
-		};
-		divider *= 10;
-	};
-
-	let e = num % 10000;
-	return arr.reverse().join('!').replace(/!/g, ' + ');
-
-
-
-
-	// let a = num % 10; 4
-	// let b = num % 100 - a; 24 
-	// let c = num % 1000 - b - a; 324
-	// let d = num % 10000 - c - b - a; 2324
-
-}
-
-let res = expandedForm(20324);
-
-
 //===========2D / 1D array coordinates mapping====================
 /*Hello! Your are given x and y and 2D array size tuple (width, height) and you have to:
 
@@ -1323,6 +710,650 @@ function Fighter(name, health, damagePerAttack) {
 };
 
 console.log(winner);
+
+
+//============Are they the "same"?==================
+/*Given two arrays a and b write a function comp(a, b) (orcompSame(a, b)) that checks whether the two arrays have the "same" elements, with the same multiplicities (the multiplicity of a member is the number of times it appears). "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.*/
+
+function comp(array1, array2) {
+	if (array1 || array2) {
+		for (let num of array2) {
+			let b = Math.sqrt(num);
+			if (array1.indexOf(b) === -1) {
+				return false;
+			};
+		}
+		return true;
+	} else {
+		return false;
+	}
+};
+
+let wewewe = comp([3, 5, 0, 3, 2, 0, 2, 9, 2, 1, 1, 9, 7, 8, 6, 8, 2, 2, 5], [4, 4, 9, 1, 81, 36, 4, 4, 81, 1, 25, 64, 9, 64, 1, 49, 4, 25, 0])
+
+
+
+//===============Build a pile of Cubes===================
+
+/*Your task is to construct a building which will be a pile of n cubes. The cube at the bottom will have a volume of 
+�
+3
+n 
+3
+ , the cube above will have volume of 
+(
+�
+−
+1
+)
+3
+(n−1) 
+3
+  and so on until the top which will have a volume of 
+1
+3
+1 
+3
+ .
+
+You are given the total volume m of the building. Being given m can you find the number n of cubes you will have to build?
+
+The parameter of the function findNb (find_nb, find-nb, findNb, ...) will be an integer m and you have to return the integer n such as 
+�
+3
++
+(
+�
+−
+1
+)
+3
++
+(
+�
+−
+2
+)
+3
++
+.
+.
+.
++
+1
+3
+=
+�
+n 
+3
+ +(n−1) 
+3
+ +(n−2) 
+3
+ +...+1 
+3
+ =m if such a n exists or -1 if there is no such n.
+
+Examples:
+findNb(1071225) --> 45
+
+findNb(91716553919377) --> -1*/
+
+function findNb(m) {
+	console.log("Build a pipe of cubes");
+	let counter = 0;
+	let cube = 1;
+
+	while (m > 0) {
+		m = m - cube ** 3;
+		counter++;
+		cube++;
+		if (m < 0) {
+			return -1;
+		}
+	};
+
+	return counter;
+};
+
+findNb(4183059834009);
+
+// function findNb(m) {
+// 	var n = 0
+// 	while (m > 0) m -= ++n**3
+// 	return m ? -1 : n
+//  }
+//=========BuildTower=============
+
+
+
+function towerBuilder(nFloors) {
+	console.log("Build Tower");
+	let length = getLengthString(nFloors);
+	let res = [];
+	let counter = 1;
+	for (let i = 1; i <= nFloors; i++) {
+		res.push(counter);
+		counter += 2;
+	};
+	console.log(res);
+	return res;
+};
+
+
+function getLengthString(l) {
+	let counter = 1;
+	for (let i = 0; i < l; i++) {
+		counter += 2;
+	};
+	return counter;
+};
+
+function getStringForTower(arr, length) {
+	return arr.map(num => ``.length = length)
+}
+
+towerBuilder(10);
+
+//========Consecutive strings======================
+// You are given an array(list) strarr of strings and an integer k. Your task is to
+// return the first longest string consisting of k consecutive strings taken in the array.
+
+//========exsamples=======
+// strarr = ["tree", "foling", "trashy", "blue", "abcdef", "uvwxyz"], k = 2
+
+// Concatenate the consecutive strings of strarr by 2, we get:
+
+// treefoling   (length 10)  concatenation of strarr[0] and strarr[1]
+// folingtrashy ("      12)  concatenation of strarr[1] and strarr[2]
+// trashyblue   ("      10)  concatenation of strarr[2] and strarr[3]
+// blueabcdef   ("      10)  concatenation of strarr[3] and strarr[4]
+// abcdefuvwxyz ("      12)  concatenation of strarr[4] and strarr[5]
+
+// Two strings are the longest: "folingtrashy" and "abcdefuvwxyz".
+// The first that came is "folingtrashy" so
+// longest_consec(strarr, 2) should return "folingtrashy".
+
+// In the same way:
+// longest_consec(["zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"], 2) --> "abigailtheta"
+
+function longestConsec(strarr, k) {
+	let result = '';
+	if (k >= strarr.length || k <= 0) {
+		return "";
+	} else {
+		strarr.forEach((elem, index) => {
+			let word = strarr.slice(index, index + k).reduce((s, e) => s + e, "");
+			word.length > result.length ? result = word : null;
+		})
+		return result
+	};
+};
+
+longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 4)
+
+
+
+//=============Convert string to camel case=============
+/*Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case). The next words should be always capitalized.*/
+
+function toCamelCase(str) {
+	str.length === 0 ? "" :
+		str.replace(/[^a-zA-Z]/g, ' ')
+			.map((word, index) => index !== 0 ? word[0].toUpperCase() + word.slice(1) : word)
+			.split(" ")
+			.join("");
+};
+
+// function toCamelCase(str) {
+// 	return str.replace(/[-_](.)/g, (_, c) => c.toUpperCase());
+// }
+
+
+
+
+
+
+//================= Coordinates Validator =============
+/*You need to create a function that will validate if given parameters are valid geographical coordinates.
+
+Valid coordinates look like the following: "23.32353342, -32.543534534". The return value should be either true or false.
+
+Latitude (which is first float) can be between 0 and 90, positive or negative. Longitude (which is second float) can be between 0 and 180, positive or negative.
+
+Coordinates can only contain digits, or one of the following symbols (including space after comma) __ -, . __
+
+There should be no space between the minus "-" sign and the digit after it.*/
+
+function isValidCoordinates(coordinates) {
+	return /^-*([1-8]?[0-9]?|90)\.*\d*,\s-*([1-9]\d?|(1[0-7][0-9]|180))\.*\d*$/.test(coordinates)
+};
+
+isValidCoordinates("4, -3");
+
+
+
+//============Decode the woofs!===================
+/*Justin has an exceptionally smart dog. In the latest show of its unparalleled intelligence, the dog learned to communicate human words. To do that, it woofs the exact number of times it takes to get to the right letter in the English alphabet. For example, if the dog is interested in the letter "A", it woofs just one time, if it's "B", it woofs two times and so on. Justin is amazed by his pet, but he also finds it challenging to translate the woofs in his head. Write a decoder for him that takes a string of hyphen-separated woofs and returns their human-language representation*/
+
+function woofDecoder(str) {
+	console.log('woof');
+	const woof = new RegExp(/\.*w\.*o\.*o\.*f\.*/, 'i');
+	const template = '_abcdefghijklmnopqrstuvwxyz';
+	let arr1 = str.split('!');
+	let res = [];
+
+
+	arr1.forEach(word => {
+		let index = checkDogWord(word, woof);
+		if (index) {
+			res.push(template[index]);
+		}
+	})
+
+	return res.join('');
+}
+
+function checkDogWord(str, regExp) {
+	return str.split('-').filter(dogLetter => regExp.test(dogLetter)).length
+}
+
+woofDecoder("Woof-woof-woof-woof-woof-woof!Woof-woof-woof-woof-woof!Woof-woof-woof-woof-woof!Woof-woof-woof-woof!Woof-woof-woof-woof-woof-woof-woof-woof-woof-woof-woof-woof-woof!Woof-woof-woof-woof-woof!");
+
+
+
+
+
+//=============Does my number look big in this?====================
+/*A Narcissistic Number (or Armstrong Number) is a positive number which is the sum of its own digits, each raised to the power of the number of digits in a given base. In this Kata, we will restrict ourselves to decimal (base 10).*/
+
+function narcissistic(value) {
+	return [...`${value}`].map((num, i, arr) => num ** arr.length).reduce((summ, num) => summ + num) == value;
+};
+
+narcissistic(153);
+
+
+//=======Give me a Diamond============6 kyu=======
+/*Jamie is a programmer, and James' girlfriend. She likes diamonds, and wants a diamond string from James. Since James doesn't know how to make this happen, he needs your help.
+
+Task
+You need to return a string that looks like a diamond shape when printed on the screen, using asterisk (*) characters. Trailing spaces should be removed, and every line must be terminated with a newline character (\n).
+
+Return null/nil/None/... if the input is an even number or negative, as it is not possible to print a diamond of even or negative size.*/
+
+function diamond(n) {
+	let arr = [...Array(n)];
+	let arr2 = [];
+	let a = '*';
+	let counter = 1;
+	for (let i = 0; i < n; i++) {
+		arr.splice(Math.ceil(n / 2) - 1 - i, i + 1, a);
+		arr2.push(arr.join(undefined))
+		if (counter < n) {
+			a += '**';
+			counter += 2;
+		} else {
+			a = a.replace(/\*{2}/, '');
+		};
+	};
+	let res = arr2.join(' ').replace(/\s/g, '\n');
+	return res;
+};
+
+console.log(diamond(7));
+
+
+//==========Hamming Distance==============
+/*The Hamming Distance is a measure of similarity between two strings of equal length. Complete the function so that it returns the number of positions where the input strings do not match.*/
+
+function hamming(a, b) {
+	let res = [];
+	for (let i = 0; i < a.length; i++) {
+		a[i] === b[i] ? null : res.push(a[i]);
+	};
+};
+// const hamming = (a, b) => [...a].reduce((pre, val, idx) => pre + (val !== b[idx]), 0);
+
+
+
+//==============Kids and candies=================
+/*I've invited some kids for my son's birthday, during which I will give to each kid some amount of candies.
+
+Every kid hates receiving less amount of candies than any other kids, and I don't want to have any candies left - giving it to my kid would be bad for his teeth.
+
+However, not every kid invited will come to my birthday party.
+
+What is the minimum amount of candies I have to buy, so that no matter how many kids come to the party in the end, I can still ensure that each kid can receive the same amount of candies, while leaving no candies left?
+
+It's ensured that at least one kid will participate in the party.*/
+
+function candiesToBuy(kids) {
+	let counter = 1;
+	end = false;
+	while (!end) {
+		let check = counter;
+		for (let i = 1; i <= kids; i++) {
+			if (counter % i !== 0) {
+				counter++;
+				break;
+			};
+		};
+		if (check === counter) {
+			end = true;
+		}
+	}
+	return counter;
+};
+
+console.log(candiesToBuy(10));
+
+
+
+
+
+
+//========================Mexican Wave====================
+function wave(str) {
+	let str2 = str.split('');
+	let result = [];
+	str2.forEach((letter, index) => {
+		if (letter !== ' ') {
+			let array = str.split('');
+			let upperLetter = letter.toUpperCase();
+			array.splice(index, 1, upperLetter);
+			result.push(array.join(''));
+		};
+	});
+	return result;
+};
+
+// var wave=w=>[...w].map((a,i)=>w.slice(0,i)+a.toUpperCase()+w.slice(i+1)).filter(a=>a!=w)
+
+
+
+
+
+//=================Pair of gloves====================
+/*Winter is coming, you must prepare your ski holidays. The objective of this kata is to determine the number of pair of gloves you can constitute from the gloves you have in your drawer.
+
+Given an array describing the color of each glove, return the number of pairs you can constitute, assuming that only gloves of the same color can form pairs.*/
+
+function numberOfPairs(gloves) {
+	let obj = [];
+
+	gloves.forEach(color => {
+		obj[color] ? obj[color] += 1 : obj[color] = 1;
+	});
+
+	let counter = 0;
+
+	for (let key in obj) {
+		counter += Math.floor(obj[key] / 2);
+	};
+
+};
+
+// function numberOfPairs(gloves) {
+// 	return [...new Set(gloves)].reduce((acc, el) => acc + ~~(gloves.filter(x => x === el).length / 2), 0);
+// }
+
+
+
+//=============Persistent Bugger=====================
+/*Write a function, persistence, that takes in a positive parameter num and returns its multiplicative persistence, which is the number of times you must multiply the digits in num until you reach a single digit.*/
+
+function persistence(num) {
+	let counter = 0;
+	while (String(num).length > 1) {
+		num = Number(String(num).split('').reduce((res, dig) => res * dig));
+		counter++;
+	};
+	return counter;
+};
+
+persistence(123);
+
+
+
+//============Simple Fun #242: Caesar Box Cipher Encoding=========
+/*Caesar Box is a simple transposition cipher used in the Roman Empire. It is described as the following two-step process:
+
+The characters of the given message are broken into n lines of equal lengths and stacked up.
+The letters from the resulting rectangle are written from top to bottom column by column.
+Given a string message, count the number of different n such that the message, obtained by applying encoding two times, is the same as initial message.*/
+
+function caesarBoxCipherEncoding(message) {
+	let counter = 0;
+	for (let i = 2; i <= Math.floor(message.length / 2); i++) {
+		if (message.length % i === 0) {
+			counter++;
+		};
+	};
+	return counter;
+};
+
+
+
+
+//===============Sudoku board validator===================
+function validateSudoku(board) {
+	//====cheking rows==========
+	for (let arr of board) {
+		if (!checkingRow(arr)) {
+			return false
+		};
+	};
+
+	//====cheking columns========
+	for (let i = 0; i < 9; i++) {
+		let column = [
+			board[0][i],
+			board[1][i],
+			board[2][i],
+			board[3][i],
+			board[4][i],
+			board[5][i],
+			board[6][i],
+			board[7][i],
+			board[8][i],
+		];
+		if (!checkingRow(column)) {
+			return false;
+		};
+	};
+
+	//======checking boxes========
+
+	return true;
+};
+
+function checkingRow(arr) {
+	let set = new Set(arr)
+	return !(arr.indexOf(0) !== -1 || [...set].length !== arr.length)
+}
+
+const sudoku =
+	[
+		[1, 2, 3, 4, 5, 6, 7, 8, 9],
+		[2, 3, 4, 5, 6, 7, 8, 9, 1],
+		[3, 4, 5, 6, 7, 8, 9, 1, 2],
+		[4, 5, 6, 7, 8, 9, 1, 2, 3],
+		[5, 6, 7, 8, 9, 1, 2, 3, 4],
+		[6, 7, 8, 9, 1, 2, 3, 4, 5],
+		[7, 8, 9, 1, 2, 3, 4, 5, 6],
+		[8, 9, 1, 2, 3, 4, 5, 6, 7],
+		[9, 1, 2, 3, 4, 5, 6, 7, 8],
+	];
+
+console.log(validateSudoku(sudoku));
+console.log([0, 0, 0].indexOf(0));
+
+
+
+//============Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!================
+// function sumDigPow(a, b) {
+// 	let arr = [];
+// 	while (a !== b) {
+// 		arr.push(a);
+// 		a++;
+// 	};
+// 	return arr.filter(num => check(num));
+// };
+
+// function check(num) {
+// 	return String(num).split('')
+// 		.map((num, index) => Math.pow(Number(num), index + 1))
+// 		.reduce((sum, num) => sum + num) === num;
+// };
+
+
+function sumDigPow(a, b) {
+	let arr = [];
+	while (a <= b) {
+		String(num).split('')
+			.map((num, index) => Math.pow(Number(num), index + 1))
+			.reduce((sum, num) => sum + num) === num ? arr.push(a) : null;
+		a++;
+	};
+	return arr;
+};
+
+
+
+
+/*You live in the city of Cartesia where all roads are laid out in a perfect grid. You arrived ten minutes too early to an appointment, so you decided to take the opportunity to go for a short walk. The city provides its citizens with a Walk Generating App on their phones -- everytime you press the button it sends you an array of one-letter strings representing directions to walk (eg. ['n', 's', 'w', 'e']). You always walk only a single block for each letter (direction) and you know it takes you one minute to traverse one city block, so create a function that will return true if the walk the app gives you will take you exactly ten minutes (you don't want to be early or late!) and will, of course, return you to your starting point. Return false otherwise.
+
+Note: you will always receive a valid array containing a random assortment of direction letters ('n', 's', 'e', or 'w' only). It wil*/
+
+// function isValidWalk(walk) {
+// 	if (walk.length === 10) {
+// 		// a = -1;
+// 		// w = 2;
+// 		// d = 1;
+// 		// s = -2;
+// 		let res = walk.map(elem => {
+// 			if (elem === 'a') {
+// 				return -1;
+// 			} else if (elem === 'w') {
+// 				return 2;
+// 			} else if (elem === 'd') {
+// 				return 1;
+// 			} else if (elem === 's') {
+// 				return -2;
+// 			}
+// 		}).reduce((a, e) => a + e);
+// 		return res === 0;
+
+// 	} else {
+// 		return false;
+// 	}
+// } 
+
+function isValidWalk(walk) {
+	walk.join(' ').replace()
+}
+		// w = -1;
+		// n = 2;
+		// e = 1;
+		// s = -2;
+
+
+
+//============Title Case=============
+/*A string is considered to be in title case if each word in the string is either (a) capitalised (that is, only the first letter of the word is in upper case) or (b) considered to be an exception and put entirely into lower case unless it is the first word, which is always capitalised.
+
+Write a function that will convert a string into title case, given an optional list of exceptions (minor words). The list of minor words will be given as a string with each word separated by a space. Your function should ignore the case of the minor words string -- it should behave in the same way even if the case of the minor word string is changed.*/
+
+function titleCase(title, minorWords) {
+
+
+
+	console.log('title case');
+	// return title.split(' ').map((word) => {
+	// 	new RegExp(word).test(minorWords) ? word.toLowerCase() : word[0].toUpperCase() + word.slice(1, -1).toLowerCase();
+	// }).join(' ');
+
+	let arr = title.split(' ');
+	let newArr = arr.map((word, index) => {
+		let has = minorWords ? new RegExp("\s" + word + "\s", 'ig').test(minorWords) : false;
+		let res;
+		if (has && index !== 0) {
+			res = word.toLowerCase();
+		} else {
+			res = word[0].toUpperCase() + word.slice(1).toLowerCase();
+		};
+		return res;
+	});
+	return newArr.join(' ');
+}
+
+titleCase("First a of in", "an often into");
+
+
+
+
+//==========Unique In Order======================
+/*Implement the function unique_in_order which takes as argument a sequence and returns a list of items without any elements with the same value next to each other and preserving the original order of elements.*/
+
+var uniqueInOrder = function (iterable) {
+	//your code here - remember iterable can be a string or an array
+	// let arr = iterable.split('');
+	// let result = [arr[0],];
+
+	// for (let i = 1; i < arr.length; i++) {
+	// 	if (arr[i - 1] != arr[i]) {
+	// 		result.push(arr[i])
+	// 	};
+	// };
+
+	// return result
+
+	return [...iterable].filter((elem, index) => index === 0 || elem !== iterable[index - 1])
+};
+
+
+
+/*Write Number in Expanded Form
+You will be given a number and you will need to return it as a string in Expanded Form. For example:
+
+expandedForm(12); // Should return '10 + 2'
+expandedForm(42); // Should return '40 + 2'
+expandedForm(70304); // Should return '70000 + 300 + 4'
+NOTE: All numbers will be whole numbers greater than 0.*/
+
+function expandedForm(num) {
+	let arr = [];
+	let divider = 10;
+
+	for (let i = 0; i < String(num).length; i++) {
+		let res = num % divider;
+
+		if (i === 0) {
+			arr.push(res);
+		} else {
+			let x = num % (divider / 10);
+			if (res !== x) {
+				arr.push(res - x);
+			};
+		};
+		divider *= 10;
+	};
+
+	let e = num % 10000;
+	return arr.reverse().join('!').replace(/!/g, ' + ');
+
+
+
+
+	// let a = num % 10; 4
+	// let b = num % 100 - a; 24 
+	// let c = num % 1000 - b - a; 324
+	// let d = num % 10000 - c - b - a; 2324
+
+}
+
+let res = expandedForm(20324);
 
 
 //=======Are You Playing Banjo?================
