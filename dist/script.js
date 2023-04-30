@@ -142,576 +142,6 @@ function domainName(url) {
 };
 
 
-//===========2D / 1D array coordinates mapping====================
-/*Hello! Your are given x and y and 2D array size tuple (width, height) and you have to:
-
-Calculate the according index in 1D space (zero-based).
-Do reverse operation.*/
-
-function to1D(x, y, size) {
-	return;
-}
-
-function to2D(n, size) {
-	return;
-}
-
-
-
-//===========anagrammDetection===============
-
-/*An anagram is the result of rearranging the letters of a word to produce a new word (see wikipedia).
-
-Note: anagrams are case insensitive
-
-Complete the function to return true if the two arguments given are anagrams of each other; return false otherwise.*/
-
-var isAnagram = function (test, original) {
-	test = test.toLowerCase();
-	original = original.toLowerCase();
-
-	let arr = original.split('');
-	test.split('').forEach(letter => arr.indexOf(letter) !== -1 ? arr.splice(arr.indexOf(letter), 1) : null);
-
-	return test.length === original.length && arr.length === 0;
-};
-
-
-
-
-
-//========Cats and shelves===============
-/*An infinite number of shelves are arranged one above the other in a staggered fashion.
-The cat can jump either one or three shelves at a time: from shelf i to shelf i+1 or i+3 (the cat cannot climb on the shelf directly above its head), according to the illustration:*/
-
-/*Input
-Start and finish shelf numbers (always positive integers, finish no smaller than start)
-
-Task
-Find the minimum number of jumps to go from start to finish
-
-Example
-Start 1, finish 5, then answer is 2 (1 => 4 => 5 or 1 => 2 => 5)*/
-
-function solution(start, finish) {
-	let counter = 0;
-	while (start !== finish) {
-		if (start + 3 < finish) {
-			start += 3;
-		} else if (start + 3 >= finish) {
-			start += 1;
-		}
-		counter++;
-	}
-	return counter;
-}
-
-let cats = solution(835, 1426);
-console.log(cats);
-
-// const solution = (start, finish, difference = finish - start) =>
-//   Math.floor(difference / 3) + difference % 3
-
-
-
-/*The first input array is the key to the correct answers to an exam, like ["a", "a", "b", "d"]. The second one contains a student's submitted answers.
-
-The two arrays are not empty and are the same length. Return the score for this array of answers, giving +4 for each correct answer, -1 for each incorrect answer, and +0 for each blank answer, represented as an empty string (in C the space character is used).
-
-If the score < 0, return 0.*/
-
-function checkExam(array1, array2) {
-	let counter = 0;
-	for (let i = 0; i < array1.length; i++) {
-		if (array2[i] !== '') {
-			if (array2[i] === array1[i]) {
-				counter += 4;
-			} else {
-				counter -= 1;
-			};
-		};
-	};
-	return counter < 0 ? 0 : counter;
-}
-
-
-
-
-//=========Complementary DNA===============
-/*In DNA strings, symbols "A" and "T" are complements of each other, as "C" and "G". Your function receives one side of the DNA (string, except for Haskell); you need to return the other complementary side. DNA strand is never empty or there is no DNA at all (again, except for Haskell).*/
-
-function DNAStrand(dna) {
-	return dna.split('').map(letter => {
-		switch (true) {
-			case letter === 'A':
-				return 'T';
-			case letter === 'C':
-				return 'G';
-			case letter === 'T':
-				return 'A';
-			case letter === 'G':
-				return 'C';
-			default: letter;
-		};
-	}).join('');
-};
-
-console.log(DNAStrand('ATTGC'));
-
-// const DNAStrand = dna => dna.replace(/./g, m => 'CGAT'['GCTA'.indexOf(m)]);
-
-
-
-//============Construct Submatrix====================
-/*Task
-Given a matrix, find its submatrix obtained by deleting the specified rows and emptying the specified columns.
-
-Input/Output
-[input] 2D integer array matrix
-
-2-dimensional array of integers.
-
-1 ≤ matrix.length ≤ 10,
-
-1 ≤ matrix[0].length ≤ 10,
-
-0 ≤ matrix[i][j] ≤ 9.
-
-[input] integer array rowsToDelete
-
-Array of indices (0-based) of rows to be deleted.
-
-0 ≤ rowsToDelete.length ≤ 5,
-
-0 ≤ rowsToDelete[i] < matrix.length.
-
-[input] integer array columnsToDelete
-
-Array of indices (0-based) of columns to be deleted.
-
-0 ≤ columnsToDelete.length ≤ 5,
-
-0 ≤ columnsToDelete[i] < matrix[0].length.
-
-[output] 2D integer array*/
-
-function constructSubmatrix(matrix, rowsToDelete, columnsToDelete) {
-	let res = [];
-	matrix.forEach((elem, index) => {
-		if (rowsToDelete.indexOf(index) === -1) {
-			columnsToDelete.forEach(position => elem.splice(position, 1, ""));
-			elem = elem.filter(num => num !== '');
-			res.push(elem)
-		};
-	});
-	return res;
-};
-
-// function constructSubmatrix(matrix, rows, cols) {
-//   return matrix.filter((row,i) => rows.indexOf(i) === -1).map(row => row.filter((col,i) => cols.indexOf(i) === -1));
-// }
-
-
-
-
-
-
-
-//======Count consonants==========
-/*Complete the function that takes a string of English-language text and returns the number of consonants in the string.
-
-Consonants are all letters used to write English excluding the vowels a, e, i, o, u.*/
-
-function consonantCount(str) {
-	str = str.length ? str.match(/[a-zA-Z]/g) : 0;
-	return str ? str.join('').replace(/[aeoui]/ig, '').length : 0;
-};
-// const consonantCount = str => str.replace(/[^a-z]|[aeiou]/gi, '').length;
-
-
-
-
-//===========Count the divisors of a number====================
-function getDivisorsCnt(n) {
-	let counter = 0;
-	for (let i = 1; i <= n; i++) {
-		if (n % i === 0) {
-			counter++;
-		};
-	};
-	return counter;
-}
-
-// const getDivisorsCnt = n =>
-//   [...Array(n / 2 ^ 0)].reduce((pre, _, idx) => n % ++idx ? pre : ++pre, 1);
-
-
-//===============Cubes in the box========================
-/* Your job is to write a function f(x,y,z) to count how many cubes of any size can fit inside a x*y*z box. For example, a 2*2*3 box has 12 1*1*1 cubes, 2 2*2*2 cubes, so a total of 14 cubes in the end. See the animation below for a visual description of the task!*/
-
-function f(x, y, z) {
-	let counter = 0;
-	let min = Math.min(x, y, z);
-
-	for (let i = 1; i <= min; i++) {
-		counter += (x * y * z) / (i * i * i);
-	};
-
-	return Math.ceil(counter);
-};
-
-console.log(f(2, 2, 3));
-
-
-
-//============Find the capitals=================
-/*Write a function that takes a single string (word) as argument. The function must return an ordered list containing the indexes of all capital letters in the string.*/
-
-var capitals = function (word) {
-	console.log("find the capitals");
-	return word.split('').map(letter => letter === letter.toUpperCase() ? word.indexOf(letter) : "x")
-		.filter(elem => elem != "x");
-};
-
-// const capitals = word => { return word.match(/[A-Z]/g).map( x => { return word.indexOf(x) }) }
-
-capitals("WpDDppR");
-
-
-//==========find the middle element============
-/*As a part of this Kata, you need to create a function that when provided with a triplet, returns the index of the numerical element that lies between the other two elements.
-
-The input to the function will be an array of three distinct numbers (Haskell: a tuple).*/
-
-function gimme(triplet) {
-	return triplet.indexOf([...triplet].sort((a, b) => a - b)[1]);
-};
-
-
-
-
-//============GrowthOfAPopulation==================
-
-/*In a small town the population is p0 = 1000 at the beginning of a year. The population regularly increases by 2 percent per year and moreover 50 new inhabitants per year come to live in the town. How many years does the town need to see its population greater or equal to p = 1200 inhabitants?*/
-
-function nbYear(p0, percent, aug, p) {
-	let counter = 0;
-	while (p0 < p) {
-		p0 = Math.floor(p0 + (p0 * (percent / 100)) + aug);
-		++counter;
-	}
-	return counter;
-}
-
-
-
-//==============Highest and Lowest===============
-/*In this little assignment you are given a string of space separated numbers, and have to return the highest and lowest number.*/
-function highAndLow(numbers) {
-	if (!/\s+/.test(numbers)) { return `${numbers} ${numbers}` };
-	return numbers.split(' ')
-		.sort((a, b) => b - a)
-		.filter((_, index, arr) => index === 0 || index === arr.length - 1)
-		.join(' ');
-};
-// function highAndLow(numbers) {
-// 	var arr = numbers.split(' ').sort(function (a, b) { return a - b });
-// 	return arr[arr.length - 1] + ' ' + arr[0];
-// }
-
-
-
-//===========isogramm================
-/*An isogram is a word that has no repeating letters, consecutive or non-consecutive. Implement a function that determines whether a string that contains only letters is an isogram. Assume the empty string is an isogram. Ignore letter case.*/
-
-function isIsogram(str) {
-	str = str.toLowerCase();
-	const set = new Set([...str]);
-	return [...set].join('') === str;
-};
-
-// function isIsogram(str) {
-// 	return !/(\w).*\1/i.test(str)
-// }
-
-
-
-//===============Maximum Length Difference====================
-/*You are given two arrays a1 and a2 of strings. Each string is composed with letters from a to z. Let x be any string in the first array and y be any string in the second array.
-
-Find max(abs(length(x) − length(y)))
-
-If a1 and/or a2 are empty return -1 in each language except in Haskell (F#) where you will return Nothing (None).*/
-
-function mxdiflg(a1, a2) {
-	a1 = a1.map(elem => elem.length);
-	a2 = a2.map(elem => elem.length);
-	return Math.max(...a1, ...a2) - Math.min(...a1, ...a2);
-};
-
-mxdiflg(['123', '1234', '123456789', '12'], ['123', '123456', '1']);
-
-
-
-//=============== Simple Fun #34: Numbers Grouping =================
-/*You are given an array of integers that you want distribute between several groups. The first group should contain numbers from 1 to 104, the second should contain those from 104 + 1 to 2 x 104, ..., the 100th one should contain numbers from 99 x 104 + 1 to 106 and so on.*/
-
-function numbersGrouping(a) {
-	console.log('numbersGrouping');
-	// let obj = {};
-	// a.forEach(num => {
-	// 	let groupIndex = Math.trunc(num / 10000 - 0.01);
-	// 	obj[groupIndex] ? obj[groupIndex] += 1 : obj[groupIndex] = 1;
-	// });
-	// let counter = 0;
-	// for (let key in obj) {
-	// 	counter += (obj[key] + 1);
-	// };
-	// return counter;
-
-	return [...new Set(a.map(num => Math.trunc(num / 10000 - 0.0001)))].length + a.length;
-};
-
-numbersGrouping([10000, 1]);
-
-
-
-//===========Pair Zeros================
-
-/*For a given list of digits 0 to 9, return a list with the same digits in the same order, but with all 0s paired. Pairing two 0s generates one 0 at the location of the first one.*/
-
-function pairZeros(arr) {
-	return arr.join('').replace(/([1-9]*0[1-9]*)0/g, '$1').split('').map(str => +str);
-};
-
-console.log(pairZeros([1, 0, 2, 0, 3, 0]));
-
-
-
-//===========remove conestive duplicate words =============
-/*Your task is to remove all consecutive duplicate words from a string, leaving only first words entries*/
-
-const removeConsecutiveDuplicates = s => s.split(' ').filter((w, i, a) => w !== a[i + 1]).join(' ');
-
-
-
-//================Simple string characters=====================
-/*In this Kata, you will be given a string and your task will be to return a list of ints detailing the count of uppercase letters, lowercase, numbers and special characters, as follows.*/
-
-function solve(s) {
-	console.log();
-	return [
-		(s.match(/[A-Z]/g) || []).length,
-		(s.match(/[a-z]/g) || []).length,
-		(s.match(/\d/g) || []).length,
-		(s.match(/[^a-zA-Z0-9]/g) || []).length,
-	];
-};
-
-console.log(solve("abcdABCD1234"));
-
-// function solve(s){
-// 	return [/[A-Z]/,/[a-z]/,/\d/,/[^a-z\d]/i].map(x=>s.split(x).length-1)
-//  }
-
-
-
-//==============Small enough? - Beginner=======================
-/*You will be given an array and a limit value. You must check that all values in the array are below or equal to the limit value. If they are, return true. Else, return false.
-
-You can assume all values in the array are numbers.*/
-
-function smallEnough(a, limit) {
-	return a.filter(num => num > limit).length === 0;
-}
-
-// smallEnough = (a, l) => a.every(e => e <= l)
-
-
-
-//==============Summing a number's digits================
-/*Write a function named sumDigits which takes a number as input and returns the sum of the absolute value of each of the number's decimal digits.*/
-
-function sumDigits(number) {
-	return `${Math.abs(number)}`.split('').reduce((summ, num) => summ + Math.abs(+num), 0);
-};
-
-sumDigits(-10);
-
-
-
-//=======Summ of minimum============
-/*Given a 2D ( nested ) list ( array, vector, .. ) of size m * n, your task is to find the sum of the minimum values in each row.*/
-
-
-
-function sumOfMinimums(arr) {
-	return arr.reduce((summ, array) => summ + Math.min(...array), 0);
-}
-
-
-//==========Beginner Series #3 Sum of Numbers============
-/*Given two integers a and b, which can be positive or negative, find the sum of all the integers between and including them and return it. If the two numbers are equal return a or b.
-
-Note: a and b are not ordered!*/
-
-function getSum(a, b) {
-	let arr = [a, b].sort((a, b) => a - b);
-	let counter = arr[0];
-	let summ = 0;
-	while (!(counter > arr[1])) {
-		summ += counter;
-		counter++;
-	};
-	return summ;
-}
-
-getSum(10, 5);
-
-//=======best practic==========================
-// function GetSum(a, b) {
-// 	return (a + b) * (Math.abs(a - b) + 1) / 2;
-//  }
-
-
-//================Sum of two lowest positive integers=======================
-/*Create a function that returns the sum of the two lowest positive numbers given an array of minimum 4 positive integers. No floats or non-positive integers will be passed.*/
-
-function sumTwoSmallestNumbers(numbers) {
-	// return numbers.splice(numbers.indexOf(Math.min(...numbers)), 0) + Math.min(...numbers);
-	let index = numbers.indexOf(Math.min(...numbers));
-	let a = +(numbers.splice(index, 1).join(''));
-	let b = Math.min(...numbers);
-	return a + b;
-};
-
-sumTwoSmallestNumbers([19, 5, 42, 2, 77]);
-
-// function sumTwoSmallestNumbers(numbers) {
-// 	var result = numbers.sort(function(a,b){return a - b});
-// 	return result[0] + result[1]
-//  };
-
-
-
-//================testing 1- 2- 3===========================
-function number(arr) {
-	let res = [];
-	for (let i = 0; i < arr.length; i++) {
-		res.push(`${i + 1}: ${arr[i]}`);
-	};
-	return res;
-};
-
-let www = number(['a', 'b', 'c']);
-
-// let number = (a) => a.map((v, i) => `${i + 1}: ${v}`)
-
-
-
-
-//============The Coupon Code=======================
-/*Your mission:
-Write a function called checkCoupon which verifies that a coupon code is valid and not expired.
-
-A coupon is no more valid on the day AFTER the expiration date. All dates will be passed as strings in this format: "MONTH DATE, YEAR".*/
-
-function checkCoupon(enteredCode, correctCode, currentDate, expirationDate) {
-	return (enteredCode === correctCode) &&
-		convertDate(expirationDate) >= convertDate(currentDate);
-}
-
-function convertDate(date) {
-	return new Date(date.split(' ').reverse().join(' '))
-};
-
-
-
-
-
-
-
-//====================Trimming a string=========================================
-/*Return a function that will trim a string (the first argument given) if it is longer than the maximum string length (the second argument given). The result should also end with "..."
-
-These dots at the end also add to the string length.
-
-So in the above example, trim("Creating kata is fun", 14) should return "Creating ka..."
-
-If the string is smaller than or equal to 3 characters then the length of the dots is not added to the string length.
-
-e.g. trim("He", 1) should return "H..."
-
-If the string is smaller or equal than the maximum string length, then simply return the string with no trimming or dots required.
-
-e.g. trim("Code Wars is pretty rad", 50) should return "Code Wars is pretty rad"*/
-
-function trim(str, size) {
-	if (str.length > size) {
-		str = str.substr(0, size);
-
-		if (str.length <= 3) {
-			return str + '...';
-		} else {
-			return str.replace(/[\w\s]{3}$/, '...',);
-		};
-
-	} else {
-		return str;
-	}
-}
-
-let a = trim("OU aMhEv", 3);
-// let b = trim("nT ExL AOmG gZTKs", 2)
-
-//==best practic====
-// function trim(arr, size) {
-// 	return arr.length <= size ? arr : arr.slice(0, arr.length > 3 ? size - 3 : size) + '...'
-// }
-
-
-
-//============twoFightersOneWnner===============
-/*Create a function that returns the name of the winner in a fight between two fighters.
-
-Each fighter takes turns attacking the other and whoever kills the other first is victorious. Death is defined as having health <= 0.
-
-Each fighter will be a Fighter object/instance. See the Fighter class below in your chosen language.
-
-Both health and damagePerAttack (damage_per_attack for python) will be integers larger than 0. You can mutate the Fighter objects.
-
-Your function also receives a third argument, a string, with the name of the fighter that attacks first.*/
-
-function declareWinner(fighter1, fighter2, firstAttacker) {
-	let first = fighter1.name === firstAttacker ? fighter1 : fighter2;
-	let second = first.name === fighter1.name ? fighter2 : fighter1;
-
-	while (first.health > 0 && second.health > 0) {
-		second.health -= first.damagePerAttack;
-		if (second.health <= 0) {
-			break;
-		} else {
-			first.health -= second.damagePerAttack;
-		}
-	};
-
-
-	return first.health <= 0 ? second.toString() : first.toString();
-};
-
-let winner = declareWinner(new Fighter("Lew", 10, 2), new Fighter("Harry", 5, 4), "Lew");
-
-
-function Fighter(name, health, damagePerAttack) {
-	this.name = name;
-	this.health = health;
-	this.damagePerAttack = damagePerAttack;
-	this.toString = function () { return this.name; }
-};
-
-console.log(winner);
-
-
 //============Are they the "same"?==================
 /*Given two arrays a and b write a function comp(a, b) (orcompSame(a, b)) that checks whether the two arrays have the "same" elements, with the same multiplicities (the multiplicity of a member is the number of times it appears). "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.*/
 
@@ -1136,6 +566,27 @@ function caesarBoxCipherEncoding(message) {
 
 
 
+//sort anithing string
+
+function order(words) {
+	let obj = {};
+	words.split(" ").forEach(word => obj[`${word.replace(/\w*(\d)\w*/g, "$1")}`] = word);
+	console.log(obj);
+
+
+	let res = [];
+	for (let key in obj) {
+		res.push(obj[key]);
+	};
+
+	console.log(res);
+	return res.join(" ");
+}
+
+order("b2 a1 c3 d4");
+
+
+
 //===============Sudoku board validator===================
 function validateSudoku(board) {
 	//====cheking rows==========
@@ -1354,6 +805,589 @@ function expandedForm(num) {
 }
 
 let res = expandedForm(20324);
+
+
+//===========2D / 1D array coordinates mapping====================
+/*Hello! Your are given x and y and 2D array size tuple (width, height) and you have to:
+
+Calculate the according index in 1D space (zero-based).
+Do reverse operation.*/
+
+function to1D(x, y, size) {
+	return;
+}
+
+function to2D(n, size) {
+	return;
+}
+
+
+
+//===========anagrammDetection===============
+
+/*An anagram is the result of rearranging the letters of a word to produce a new word (see wikipedia).
+
+Note: anagrams are case insensitive
+
+Complete the function to return true if the two arguments given are anagrams of each other; return false otherwise.*/
+
+var isAnagram = function (test, original) {
+	test = test.toLowerCase();
+	original = original.toLowerCase();
+
+	let arr = original.split('');
+	test.split('').forEach(letter => arr.indexOf(letter) !== -1 ? arr.splice(arr.indexOf(letter), 1) : null);
+
+	return test.length === original.length && arr.length === 0;
+};
+
+
+
+
+
+//========Cats and shelves===============
+/*An infinite number of shelves are arranged one above the other in a staggered fashion.
+The cat can jump either one or three shelves at a time: from shelf i to shelf i+1 or i+3 (the cat cannot climb on the shelf directly above its head), according to the illustration:*/
+
+/*Input
+Start and finish shelf numbers (always positive integers, finish no smaller than start)
+
+Task
+Find the minimum number of jumps to go from start to finish
+
+Example
+Start 1, finish 5, then answer is 2 (1 => 4 => 5 or 1 => 2 => 5)*/
+
+function solution(start, finish) {
+	let counter = 0;
+	while (start !== finish) {
+		if (start + 3 < finish) {
+			start += 3;
+		} else if (start + 3 >= finish) {
+			start += 1;
+		}
+		counter++;
+	}
+	return counter;
+}
+
+let cats = solution(835, 1426);
+console.log(cats);
+
+// const solution = (start, finish, difference = finish - start) =>
+//   Math.floor(difference / 3) + difference % 3
+
+
+
+/*The first input array is the key to the correct answers to an exam, like ["a", "a", "b", "d"]. The second one contains a student's submitted answers.
+
+The two arrays are not empty and are the same length. Return the score for this array of answers, giving +4 for each correct answer, -1 for each incorrect answer, and +0 for each blank answer, represented as an empty string (in C the space character is used).
+
+If the score < 0, return 0.*/
+
+function checkExam(array1, array2) {
+	let counter = 0;
+	for (let i = 0; i < array1.length; i++) {
+		if (array2[i] !== '') {
+			if (array2[i] === array1[i]) {
+				counter += 4;
+			} else {
+				counter -= 1;
+			};
+		};
+	};
+	return counter < 0 ? 0 : counter;
+}
+
+
+
+
+//=========Complementary DNA===============
+/*In DNA strings, symbols "A" and "T" are complements of each other, as "C" and "G". Your function receives one side of the DNA (string, except for Haskell); you need to return the other complementary side. DNA strand is never empty or there is no DNA at all (again, except for Haskell).*/
+
+function DNAStrand(dna) {
+	return dna.split('').map(letter => {
+		switch (true) {
+			case letter === 'A':
+				return 'T';
+			case letter === 'C':
+				return 'G';
+			case letter === 'T':
+				return 'A';
+			case letter === 'G':
+				return 'C';
+			default: letter;
+		};
+	}).join('');
+};
+
+console.log(DNAStrand('ATTGC'));
+
+// const DNAStrand = dna => dna.replace(/./g, m => 'CGAT'['GCTA'.indexOf(m)]);
+
+
+
+//============Construct Submatrix====================
+/*Task
+Given a matrix, find its submatrix obtained by deleting the specified rows and emptying the specified columns.
+
+Input/Output
+[input] 2D integer array matrix
+
+2-dimensional array of integers.
+
+1 ≤ matrix.length ≤ 10,
+
+1 ≤ matrix[0].length ≤ 10,
+
+0 ≤ matrix[i][j] ≤ 9.
+
+[input] integer array rowsToDelete
+
+Array of indices (0-based) of rows to be deleted.
+
+0 ≤ rowsToDelete.length ≤ 5,
+
+0 ≤ rowsToDelete[i] < matrix.length.
+
+[input] integer array columnsToDelete
+
+Array of indices (0-based) of columns to be deleted.
+
+0 ≤ columnsToDelete.length ≤ 5,
+
+0 ≤ columnsToDelete[i] < matrix[0].length.
+
+[output] 2D integer array*/
+
+function constructSubmatrix(matrix, rowsToDelete, columnsToDelete) {
+	let res = [];
+	matrix.forEach((elem, index) => {
+		if (rowsToDelete.indexOf(index) === -1) {
+			columnsToDelete.forEach(position => elem.splice(position, 1, ""));
+			elem = elem.filter(num => num !== '');
+			res.push(elem)
+		};
+	});
+	return res;
+};
+
+// function constructSubmatrix(matrix, rows, cols) {
+//   return matrix.filter((row,i) => rows.indexOf(i) === -1).map(row => row.filter((col,i) => cols.indexOf(i) === -1));
+// }
+
+
+
+
+
+
+
+//======Count consonants==========
+/*Complete the function that takes a string of English-language text and returns the number of consonants in the string.
+
+Consonants are all letters used to write English excluding the vowels a, e, i, o, u.*/
+
+function consonantCount(str) {
+	str = str.length ? str.match(/[a-zA-Z]/g) : 0;
+	return str ? str.join('').replace(/[aeoui]/ig, '').length : 0;
+};
+// const consonantCount = str => str.replace(/[^a-z]|[aeiou]/gi, '').length;
+
+
+
+
+//===========Count the divisors of a number====================
+function getDivisorsCnt(n) {
+	let counter = 0;
+	for (let i = 1; i <= n; i++) {
+		if (n % i === 0) {
+			counter++;
+		};
+	};
+	return counter;
+}
+
+// const getDivisorsCnt = n =>
+//   [...Array(n / 2 ^ 0)].reduce((pre, _, idx) => n % ++idx ? pre : ++pre, 1);
+
+
+//===============Cubes in the box========================
+/* Your job is to write a function f(x,y,z) to count how many cubes of any size can fit inside a x*y*z box. For example, a 2*2*3 box has 12 1*1*1 cubes, 2 2*2*2 cubes, so a total of 14 cubes in the end. See the animation below for a visual description of the task!*/
+
+function f(x, y, z) {
+	let counter = 0;
+	let min = Math.min(x, y, z);
+
+	for (let i = 1; i <= min; i++) {
+		counter += (x * y * z) / (i * i * i);
+	};
+
+	return Math.ceil(counter);
+};
+
+console.log(f(2, 2, 3));
+
+
+
+//============Find the capitals=================
+/*Write a function that takes a single string (word) as argument. The function must return an ordered list containing the indexes of all capital letters in the string.*/
+
+var capitals = function (word) {
+	console.log("find the capitals");
+	return word.split('').map(letter => letter === letter.toUpperCase() ? word.indexOf(letter) : "x")
+		.filter(elem => elem != "x");
+};
+
+// const capitals = word => { return word.match(/[A-Z]/g).map( x => { return word.indexOf(x) }) }
+
+capitals("WpDDppR");
+
+
+//==========find the middle element============
+/*As a part of this Kata, you need to create a function that when provided with a triplet, returns the index of the numerical element that lies between the other two elements.
+
+The input to the function will be an array of three distinct numbers (Haskell: a tuple).*/
+
+function gimme(triplet) {
+	return triplet.indexOf([...triplet].sort((a, b) => a - b)[1]);
+};
+
+
+
+
+//============GrowthOfAPopulation==================
+
+/*In a small town the population is p0 = 1000 at the beginning of a year. The population regularly increases by 2 percent per year and moreover 50 new inhabitants per year come to live in the town. How many years does the town need to see its population greater or equal to p = 1200 inhabitants?*/
+
+function nbYear(p0, percent, aug, p) {
+	let counter = 0;
+	while (p0 < p) {
+		p0 = Math.floor(p0 + (p0 * (percent / 100)) + aug);
+		++counter;
+	}
+	return counter;
+}
+
+
+
+//==============Highest and Lowest===============
+/*In this little assignment you are given a string of space separated numbers, and have to return the highest and lowest number.*/
+function highAndLow(numbers) {
+	if (!/\s+/.test(numbers)) { return `${numbers} ${numbers}` };
+	return numbers.split(' ')
+		.sort((a, b) => b - a)
+		.filter((_, index, arr) => index === 0 || index === arr.length - 1)
+		.join(' ');
+};
+// function highAndLow(numbers) {
+// 	var arr = numbers.split(' ').sort(function (a, b) { return a - b });
+// 	return arr[arr.length - 1] + ' ' + arr[0];
+// }
+
+
+
+//===========isogramm================
+/*An isogram is a word that has no repeating letters, consecutive or non-consecutive. Implement a function that determines whether a string that contains only letters is an isogram. Assume the empty string is an isogram. Ignore letter case.*/
+
+function isIsogram(str) {
+	str = str.toLowerCase();
+	const set = new Set([...str]);
+	return [...set].join('') === str;
+};
+
+// function isIsogram(str) {
+// 	return !/(\w).*\1/i.test(str)
+// }
+
+
+
+//===============Maximum Length Difference====================
+/*You are given two arrays a1 and a2 of strings. Each string is composed with letters from a to z. Let x be any string in the first array and y be any string in the second array.
+
+Find max(abs(length(x) − length(y)))
+
+If a1 and/or a2 are empty return -1 in each language except in Haskell (F#) where you will return Nothing (None).*/
+
+function mxdiflg(a1, a2) {
+	a1 = a1.map(elem => elem.length);
+	a2 = a2.map(elem => elem.length);
+	return Math.max(...a1, ...a2) - Math.min(...a1, ...a2);
+};
+
+mxdiflg(['123', '1234', '123456789', '12'], ['123', '123456', '1']);
+
+
+
+//=============== Simple Fun #34: Numbers Grouping =================
+/*You are given an array of integers that you want distribute between several groups. The first group should contain numbers from 1 to 104, the second should contain those from 104 + 1 to 2 x 104, ..., the 100th one should contain numbers from 99 x 104 + 1 to 106 and so on.*/
+
+function numbersGrouping(a) {
+	console.log('numbersGrouping');
+	// let obj = {};
+	// a.forEach(num => {
+	// 	let groupIndex = Math.trunc(num / 10000 - 0.01);
+	// 	obj[groupIndex] ? obj[groupIndex] += 1 : obj[groupIndex] = 1;
+	// });
+	// let counter = 0;
+	// for (let key in obj) {
+	// 	counter += (obj[key] + 1);
+	// };
+	// return counter;
+
+	return [...new Set(a.map(num => Math.trunc(num / 10000 - 0.0001)))].length + a.length;
+};
+
+numbersGrouping([10000, 1]);
+//=================Ones and Zeros===========================
+
+/* Given an array of ones and zeroes, convert the equivalent binary value to an integer.
+
+Eg: [0, 0, 0, 1] is treated as 0001 which is the binary representation of 1.*/
+
+const binaryArrayToNumber = arr => {
+	console.log('Ones and Zeros');
+	let res = parseInt(arr.join(""), 2);
+	return res;
+};
+
+binaryArrayToNumber([0, 0, 0, 1]);
+
+
+
+//===========Pair Zeros================
+
+/*For a given list of digits 0 to 9, return a list with the same digits in the same order, but with all 0s paired. Pairing two 0s generates one 0 at the location of the first one.*/
+
+function pairZeros(arr) {
+	return arr.join('').replace(/([1-9]*0[1-9]*)0/g, '$1').split('').map(str => +str);
+};
+
+console.log(pairZeros([1, 0, 2, 0, 3, 0]));
+
+
+
+//===========remove conestive duplicate words =============
+/*Your task is to remove all consecutive duplicate words from a string, leaving only first words entries*/
+
+const removeConsecutiveDuplicates = s => s.split(' ').filter((w, i, a) => w !== a[i + 1]).join(' ');
+
+
+
+//================Simple string characters=====================
+/*In this Kata, you will be given a string and your task will be to return a list of ints detailing the count of uppercase letters, lowercase, numbers and special characters, as follows.*/
+
+function solve(s) {
+	console.log();
+	return [
+		(s.match(/[A-Z]/g) || []).length,
+		(s.match(/[a-z]/g) || []).length,
+		(s.match(/\d/g) || []).length,
+		(s.match(/[^a-zA-Z0-9]/g) || []).length,
+	];
+};
+
+console.log(solve("abcdABCD1234"));
+
+// function solve(s){
+// 	return [/[A-Z]/,/[a-z]/,/\d/,/[^a-z\d]/i].map(x=>s.split(x).length-1)
+//  }
+
+
+
+//==============Small enough? - Beginner=======================
+/*You will be given an array and a limit value. You must check that all values in the array are below or equal to the limit value. If they are, return true. Else, return false.
+
+You can assume all values in the array are numbers.*/
+
+function smallEnough(a, limit) {
+	return a.filter(num => num > limit).length === 0;
+}
+
+// smallEnough = (a, l) => a.every(e => e <= l)
+
+
+
+//==============Summing a number's digits================
+/*Write a function named sumDigits which takes a number as input and returns the sum of the absolute value of each of the number's decimal digits.*/
+
+function sumDigits(number) {
+	return `${Math.abs(number)}`.split('').reduce((summ, num) => summ + Math.abs(+num), 0);
+};
+
+sumDigits(-10);
+
+
+
+//=======Summ of minimum============
+/*Given a 2D ( nested ) list ( array, vector, .. ) of size m * n, your task is to find the sum of the minimum values in each row.*/
+
+
+
+function sumOfMinimums(arr) {
+	return arr.reduce((summ, array) => summ + Math.min(...array), 0);
+}
+
+
+//==========Beginner Series #3 Sum of Numbers============
+/*Given two integers a and b, which can be positive or negative, find the sum of all the integers between and including them and return it. If the two numbers are equal return a or b.
+
+Note: a and b are not ordered!*/
+
+function getSum(a, b) {
+	let arr = [a, b].sort((a, b) => a - b);
+	let counter = arr[0];
+	let summ = 0;
+	while (!(counter > arr[1])) {
+		summ += counter;
+		counter++;
+	};
+	return summ;
+}
+
+getSum(10, 5);
+
+//=======best practic==========================
+// function GetSum(a, b) {
+// 	return (a + b) * (Math.abs(a - b) + 1) / 2;
+//  }
+
+
+//================Sum of two lowest positive integers=======================
+/*Create a function that returns the sum of the two lowest positive numbers given an array of minimum 4 positive integers. No floats or non-positive integers will be passed.*/
+
+function sumTwoSmallestNumbers(numbers) {
+	// return numbers.splice(numbers.indexOf(Math.min(...numbers)), 0) + Math.min(...numbers);
+	let index = numbers.indexOf(Math.min(...numbers));
+	let a = +(numbers.splice(index, 1).join(''));
+	let b = Math.min(...numbers);
+	return a + b;
+};
+
+sumTwoSmallestNumbers([19, 5, 42, 2, 77]);
+
+// function sumTwoSmallestNumbers(numbers) {
+// 	var result = numbers.sort(function(a,b){return a - b});
+// 	return result[0] + result[1]
+//  };
+
+
+
+//================testing 1- 2- 3===========================
+function number(arr) {
+	let res = [];
+	for (let i = 0; i < arr.length; i++) {
+		res.push(`${i + 1}: ${arr[i]}`);
+	};
+	return res;
+};
+
+let www = number(['a', 'b', 'c']);
+
+// let number = (a) => a.map((v, i) => `${i + 1}: ${v}`)
+
+
+
+
+//============The Coupon Code=======================
+/*Your mission:
+Write a function called checkCoupon which verifies that a coupon code is valid and not expired.
+
+A coupon is no more valid on the day AFTER the expiration date. All dates will be passed as strings in this format: "MONTH DATE, YEAR".*/
+
+function checkCoupon(enteredCode, correctCode, currentDate, expirationDate) {
+	return (enteredCode === correctCode) &&
+		convertDate(expirationDate) >= convertDate(currentDate);
+}
+
+function convertDate(date) {
+	return new Date(date.split(' ').reverse().join(' '))
+};
+
+
+
+
+
+
+
+//====================Trimming a string=========================================
+/*Return a function that will trim a string (the first argument given) if it is longer than the maximum string length (the second argument given). The result should also end with "..."
+
+These dots at the end also add to the string length.
+
+So in the above example, trim("Creating kata is fun", 14) should return "Creating ka..."
+
+If the string is smaller than or equal to 3 characters then the length of the dots is not added to the string length.
+
+e.g. trim("He", 1) should return "H..."
+
+If the string is smaller or equal than the maximum string length, then simply return the string with no trimming or dots required.
+
+e.g. trim("Code Wars is pretty rad", 50) should return "Code Wars is pretty rad"*/
+
+function trim(str, size) {
+	if (str.length > size) {
+		str = str.substr(0, size);
+
+		if (str.length <= 3) {
+			return str + '...';
+		} else {
+			return str.replace(/[\w\s]{3}$/, '...',);
+		};
+
+	} else {
+		return str;
+	}
+}
+
+let a = trim("OU aMhEv", 3);
+// let b = trim("nT ExL AOmG gZTKs", 2)
+
+//==best practic====
+// function trim(arr, size) {
+// 	return arr.length <= size ? arr : arr.slice(0, arr.length > 3 ? size - 3 : size) + '...'
+// }
+
+
+
+//============twoFightersOneWnner===============
+/*Create a function that returns the name of the winner in a fight between two fighters.
+
+Each fighter takes turns attacking the other and whoever kills the other first is victorious. Death is defined as having health <= 0.
+
+Each fighter will be a Fighter object/instance. See the Fighter class below in your chosen language.
+
+Both health and damagePerAttack (damage_per_attack for python) will be integers larger than 0. You can mutate the Fighter objects.
+
+Your function also receives a third argument, a string, with the name of the fighter that attacks first.*/
+
+function declareWinner(fighter1, fighter2, firstAttacker) {
+	let first = fighter1.name === firstAttacker ? fighter1 : fighter2;
+	let second = first.name === fighter1.name ? fighter2 : fighter1;
+
+	while (first.health > 0 && second.health > 0) {
+		second.health -= first.damagePerAttack;
+		if (second.health <= 0) {
+			break;
+		} else {
+			first.health -= second.damagePerAttack;
+		}
+	};
+
+
+	return first.health <= 0 ? second.toString() : first.toString();
+};
+
+let winner = declareWinner(new Fighter("Lew", 10, 2), new Fighter("Harry", 5, 4), "Lew");
+
+
+function Fighter(name, health, damagePerAttack) {
+	this.name = name;
+	this.health = health;
+	this.damagePerAttack = damagePerAttack;
+	this.toString = function () { return this.name; }
+};
+
+console.log(winner);
 
 
 //=======Are You Playing Banjo?================
